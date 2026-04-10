@@ -72,4 +72,115 @@ export default {
         <div class="max-w-7xl w-full flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-24">
             
             <div class="w-full lg:w-1/2 space-y-10">
-                <div class="flex items-center
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 bg-[#00F0FF] rounded-sm flex items-center justify-center shadow-[0_0_20px_rgba(0,240,255,0.4)]">
+                        <svg class="w-7 h-7 text-black" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold tracking-tighter leading-none uppercase">Horasis</h1>
+                        <p class="text-[9px] tracking-[0.4em] text-gray-500 mt-1 uppercase font-bold">By Aegisync Limited</p>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <h2 class="text-5xl md:text-7xl font-bold leading-tight tracking-tighter">
+                        Secure Operations<br>
+                        <span class="text-white opacity-80">Orchestrated.</span>
+                    </h2>
+                    <p class="text-gray-400 text-lg leading-relaxed max-w-md border-l-2 border-[#00F0FF]/30 pl-6">
+                        Access the next generation of predictive network management and autonomous defense through the Horasis Sentinel Interface.
+                    </p>
+                </div>
+
+                <div class="flex gap-12">
+                    <div class="group">
+                        <div class="text-[#00F0FF] text-3xl font-bold italic group-hover:scale-105 transition-transform">99.99%</div>
+                        <div class="text-[10px] text-gray-500 tracking-[0.2em] uppercase mt-2">Uptime SLA</div>
+                    </div>
+                    <div class="border-l border-gray-800 pl-12 group">
+                        <div class="text-green-400 text-3xl font-bold italic group-hover:scale-105 transition-transform">4.2ms</div>
+                        <div class="text-[10px] text-gray-500 tracking-[0.2em] uppercase mt-2">Avg Latency</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-panel w-full max-w-md rounded-xl p-8 md:p-12 relative overflow-hidden">
+                <div class="relative z-10">
+                    <h3 class="text-2xl font-bold mb-2">System Authentication</h3>
+                    <p class="text-gray-500 text-sm mb-10">Enter node credentials to initiate handshake.</p>
+
+                    <form class="space-y-6" onsubmit="return false;">
+                        <div>
+                            <label class="block text-[10px] tracking-[0.3em] text-gray-500 uppercase mb-3 font-bold">Identity / Email</label>
+                            <div class="relative">
+                                <input type="email" placeholder="operator_id@aegisync.com" class="input-field w-full py-4 pl-6 pr-4 rounded text-sm text-gray-200">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-[10px] tracking-[0.3em] text-gray-500 uppercase mb-3 font-bold">Cipher Key</label>
+                            <div class="relative">
+                                <input type="password" placeholder="••••••••••••" class="input-field w-full py-4 pl-6 pr-4 rounded text-sm text-gray-200">
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between text-[11px]">
+                            <label class="flex items-center gap-2 cursor-pointer text-gray-500 hover:text-gray-300 transition-colors">
+                                <input type="checkbox" class="w-4 h-4 rounded bg-gray-900 border-gray-700 checked:bg-[#00F0FF]">
+                                Trust Terminal
+                            </label>
+                            <a href="#" class="text-[#00F0FF] hover:text-white transition-all">Recovery Protocol?</a>
+                        </div>
+
+                        <button class="neon-button w-full py-4 rounded font-bold text-black flex items-center justify-center gap-3 uppercase tracking-[0.2em] text-sm">
+                            Initiate Login
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+                        </button>
+                    </form>
+
+                    <div class="relative my-12">
+                        <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-gray-800"></div></div>
+                        <div class="relative flex justify-center text-[9px] uppercase tracking-[0.4em] text-gray-600">
+                            <span class="bg-[#171c22] px-4">Federated Identity</span>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <button class="bg-[#2D343C]/40 hover:bg-[#2D343C]/80 py-3.5 rounded text-[11px] font-bold transition-all border border-white/5 uppercase tracking-widest">SAML 2.0</button>
+                        <button class="bg-[#2D343C]/40 hover:bg-[#2D343C]/80 py-3.5 rounded text-[11px] font-bold transition-all border border-white/5 uppercase tracking-widest">OIDC</button>
+                    </div>
+
+                    <p class="text-[9px] text-gray-600 leading-relaxed text-center mt-12 px-6 uppercase tracking-widest">
+                        Unauthorized access is logged by Aegisync Global Protocol.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="p-8 flex flex-col md:flex-row justify-between items-center text-[10px] tracking-[0.3em] text-gray-600 uppercase border-t border-gray-900/50">
+        <div class="font-bold">Aegisync // Horasis_V4.2.0</div>
+        <div class="flex gap-8 mt-4 md:mt-0 opacity-60 hover:opacity-100 transition-opacity">
+            <a href="#">Support</a>
+            <a href="#">Docs</a>
+            <a href="#">System Status</a>
+        </div>
+    </footer>
+</body>
+</html>
+    `;
+
+    // 返回响应
+    return new Response(html, {
+      headers: {
+        "content-type": "text/html;charset=UTF-8",
+        "Cache-Control": "public, max-age=3600",
+        "X-Frame-Options": "DENY",
+        "X-Content-Type-Options": "nosniff",
+        "Strict-Transport-Security": "max-age=31536000; includeSubDomains"
+      },
+    });
+  },
+};
