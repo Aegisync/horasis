@@ -50,4 +50,22 @@ body { font-family: 'JetBrains Mono', monospace; background-color: var(--bg-dark
 <label class="block text-[10px] tracking-widest text-gray-500 uppercase mb-3 font-bold">Cipher Key</label>
 <input type="password" placeholder="••••••••••••" class="input-field w-full py-3.5 px-5 rounded text-sm text-gray-200">
 </div>
-<button type="submit" class="neon-btn w-full py-4 rounded font-bold text-black flex items-center justify-center gap-3 uppercase tracking-widest text-sm">Initiate Hand
+<button type="submit" class="neon-btn w-full py-4 rounded font-bold text-black flex items-center justify-center gap-3 uppercase tracking-widest text-sm">Initiate Handshake</button>
+</form>
+</div>
+</div>
+</main>
+<footer class="p-12 flex flex-col md:flex-row justify-between items-center text-[10px] tracking-widest text-gray-600 uppercase border-t border-gray-900/50 w-full max-w-7xl mx-auto">
+<div class="font-bold"><a href="https://www.aegisync.com" class="hover:text-cyan-500 transition-colors">Aegisync Limited</a> // Horasis_OPS_V4.2.0</div>
+</footer>
+</body>
+</html>`;
+
+    return new Response(html, {
+      headers: {
+        "content-type": "text/html;charset=UTF-8",
+        "X-Content-Type-Options": "nosniff",
+      },
+    });
+  },
+};
