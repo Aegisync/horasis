@@ -5,49 +5,179 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Horasis OPS | Operations Platform System</title>
     <meta name="description" content="Horasis OPS - Carrier-grade Intelligence Layer by Aegisync.">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --neon-cyan: #00F0FF;
             --bg-dark: #0B1015;
+            --glass: rgba(23, 28, 34, 0.9);
         }
+        * { box-sizing: border-box; }
         body {
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg-dark);
             background-image: radial-gradient(circle at 80% 20%, #1a2a33 0%, transparent 40%);
             margin: 0;
             min-height: 100vh;
             color: #ffffff;
-            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
-        .glass-panel {
-            background: rgba(23, 28, 34, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            padding: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
         }
-        .neon-btn {
-            background: linear-gradient(90deg, #00F0FF 0%, #00D1FF 100%);
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
-            transition: all 0.3s ease;
+        .info-section { flex: 1; min-width: 300px; }
+        .login-card {
+            width: 100%;
+            max-width: 400px;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
-        .neon-btn:hover {
-            box-shadow: 0 0 25px rgba(0, 240, 255, 0.5);
-            transform: translateY(-1px);
+        .logo-box {
+            width: 48px;
+            height: 48px;
+            background: var(--neon-cyan);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+            margin-bottom: 20px;
         }
-        .input-field {
-            background: rgba(45, 52, 60, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: all 0.3s ease;
-        }
-        .input-field:focus {
-            border-color: var(--neon-cyan);
+        .logo-box svg { width: 28px; height: 28px; color: black; }
+        h1 { font-size: 28px; margin: 0; letter-spacing: -1px; text-transform: uppercase; }
+        .brand-sub { font-size: 9px; letter-spacing: 3px; color: #555; font-weight: bold; text-transform: uppercase; margin-top: 5px; }
+        h2 { font-size: 56px; line-height: 1.1; margin: 30px 0; font-weight: 800; }
+        .highlight { color: var(--neon-cyan); opacity: 0.9; }
+        .desc { color: #888; border-left: 2px solid #164e63; padding-left: 20px; font-size: 16px; line-height: 1.6; margin-bottom: 40px; }
+        .stats { display: flex; gap: 40px; }
+        .stat-val { color: var(--neon-cyan); font-size: 28px; font-weight: bold; font-style: italic; }
+        .stat-label { font-size: 10px; color: #555; text-transform: uppercase; letter-spacing: 2px; margin-top: 5px; }
+        .input-group { margin-bottom: 25px; }
+        label { display: block; font-size: 10px; color: #555; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; font-weight: bold; }
+        input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 12px 15px;
+            border-radius: 4px;
+            color: white;
             outline: none;
+            transition: 0.3s;
+        }
+        input:focus { border-color: var(--neon-cyan); }
+        .btn {
+            width: 100%;
+            background: var(--neon-cyan);
+            color: black;
+            border: none;
+            padding: 15px;
+            border-radius: 4px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+        .btn:hover { box-shadow: 0 0 20px rgba(0, 240, 255, 0.5); transform: translateY(-1px); }
+        footer {
+            margin-top: 50px;
+            width: 100%;
+            max-width: 1200px;
+            padding: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: space-between;
+            font-size: 10px;
+            color: #444;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        a { color: inherit; text-decoration: none; transition: 0.3s; }
+        a:hover { color: var(--neon-cyan); }
+        @media (max-width: 900px) {
+            .container { flex-direction: column; text-align: center; }
+            .desc { border-left: none; padding-left: 0; }
+            .stats { justify-content: center; }
         }
     </style>
 </head>
-<body class="flex flex-col min-h-screen">
+<body>
 
-    <main class="flex-grow flex items-center justify-center p-6 lg:p-16">
-        <div class="max-w-7xl w-full flex flex-col lg:flex-row items-center justify-between gap-12">
+    <div class="container">
+        <div class="info-section">
+            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 40px;">
+                <div class="logo-box">
+                    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3z"/></svg>
+                </div>
+                <div>
+                    <h1>Horasis OPS</h1>
+                    <div class="brand-sub">Operations Platform System // By Aegisync</div>
+                </div>
+            </div>
+
+            <h2>DIA Operations<br><span class="highlight">Orchestrated.</span></h2>
+            
+            <p class="desc">
+                Handshake with the next generation of predictive DIA network management and autonomous infrastructure defense.
+            </p>
+
+            <div class="stats">
+                <div>
+                    <div class="stat-val">99.99%</div>
+                    <div class="stat-label">Node Uptime</div>
+                </div>
+                <div style="border-left: 1px solid #222; padding-left: 40px;">
+                    <div class="stat-val" style="color: #4ade80;">4.2ms</div>
+                    <div class="stat-label">Backbone Latency</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="login-card">
+            <h3 style="font-size: 20px; margin-top: 0;">System Handshake</h3>
+            <p style="color: #555; font-size: 13px; margin-bottom: 30px;">Enter credentials to access OPS console.</p>
+
+            <form onsubmit="return false;">
+                <div class="input-group">
+                    <label>Terminal Identity</label>
+                    <input type="email" placeholder="operator_id@aegisync.com">
+                </div>
+                <div class="input-group">
+                    <label>Cipher Key</label>
+                    <input type="password" placeholder="••••••••••••">
+                </div>
+                <button class="btn">Initiate Handshake</button>
+            </form>
+
+            <p style="font-size: 9px; color: #333; text-align: center; margin-top: 30px; text-transform: uppercase; letter-spacing: 1px;">
+                Authorized DIA access only. Monitored by Aegisync Global Security.
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <div style="font-weight: bold;">
+            <a href="https://www.aegisync.com">Aegisync Limited</a> // Horasis_OPS_V4.2.0
+        </div>
+        <div style="display: flex; gap: 20px;">
+            <a href="#">SLA Support</a>
+            <a href="#">System Status</a>
+        </div>
+    </footer>
+
+</body>
+</html>
