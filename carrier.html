@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SENTINEL | ADD NEW CIRCUIT</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&amp;family=Inter:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#00daf3",
+                        "error-container": "#93000a",
+                        "on-secondary-fixed": "#002108",
+                        "tertiary": "#ffe8e4",
+                        "primary-fixed": "#9cf0ff",
+                        "on-tertiary-fixed": "#410000",
+                        "on-error-container": "#ffdad6",
+                        "inverse-primary": "#006875",
+                        "primary": "#c3f5ff",
+                        "on-secondary-fixed-variant": "#00531e",
+                        "surface": "#10141a",
+                        "inverse-on-surface": "#2d3137",
+                        "on-tertiary-container": "#b60000",
+                        "on-primary-container": "#00626e",
+                        "surface-container": "#1c2026",
+                        "background": "#10141a",
+                        "surface-container-highest": "#31353c",
+                        "surface-container-lowest": "#0a0e14",
+                        "on-secondary": "#003912",
+                        "secondary-container": "#02c953",
+                        "on-primary-fixed": "#001f24",
+                        "tertiary-container": "#ffc2b8",
+                        "surface-container-high": "#262a31",
+                        "secondary": "#40e56c",
+                        "surface-bright": "#353940",
+                        "on-tertiary": "#690000",
+                        "inverse-surface": "#dfe2eb",
+                        "tertiary-fixed": "#ffdad4",
+                        "surface-container-low": "#181c22",
+                        "secondary-fixed": "#69ff87",
+                        "on-surface-variant": "#bac9cc",
+                        "secondary-fixed-dim": "#3ce36a",
+                        "on-primary-fixed-variant": "#004f58",
+                        "on-primary": "#00363d",
+                        "surface-dim": "#10141a",
+                        "tertiary-fixed-dim": "#ffb4a8",
+                        "primary-container": "#00e5ff",
+                        "outline-variant": "#3b494c",
+                        "on-surface": "#dfe2eb",
+                        "on-error": "#690005",
+                        "outline": "#849396",
+                        "on-tertiary-fixed-variant": "#930000",
+                        "primary-fixed-dim": "#00daf3",
+                        "surface-variant": "#31353c",
+                        "on-background": "#dfe2eb",
+                        "error": "#ffb4ab",
+                        "on-secondary-container": "#004d1b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Inter"],
+                        "label": ["Inter"],
+                        "mono": ["JetBrains Mono"]
+                    }
+                },
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #10141a;
+            color: #dfe2eb;
+            overflow-x: hidden;
+        }
+        .tech-grid {
+            background-image: 
+                linear-gradient(to right, rgba(0, 229, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 229, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        .mono-input {
+            font-family: 'JetBrains Mono', monospace;
+            letter-spacing: -0.025em;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #10141a; }
+        ::-webkit-scrollbar-thumb { background: #31353c; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #00daf3; }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 py-3 w-full backdrop-blur-md bg-opacity-90 bg-[#10141a] shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
+<div class="flex items-center gap-8">
+<div class="text-xl font-black text-[#00E5FF] tracking-tighter font-['Space_Grotesk'] uppercase tracking-wider text-sm font-bold">
+                SENTINEL | ASSET MGMT
+            </div>
+<div class="hidden md:flex items-center bg-[#181c22] px-3 py-1.5 rounded-sm">
+<span class="material-symbols-outlined text-slate-400 text-sm mr-2" data-icon="search">search</span>
+<input class="bg-transparent border-none text-xs focus:ring-0 text-white placeholder-slate-500 w-64 uppercase tracking-widest" placeholder="QUERY NETWORK..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<nav class="hidden lg:flex gap-6 items-center">
+<a class="text-[#00E5FF] border-b-2 border-[#00E5FF] pb-1 font-['Space_Grotesk'] uppercase tracking-wider text-sm font-bold" href="#">CIRCUITS</a>
+<a class="text-slate-400 hover:text-white transition-colors font-['Space_Grotesk'] uppercase tracking-wider text-sm font-bold" href="#">NODES</a>
+<a class="text-slate-400 hover:text-white transition-colors font-['Space_Grotesk'] uppercase tracking-wider text-sm font-bold" href="#">ANALYTICS</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="hover:bg-[#1c2026] hover:text-[#00E5FF] transition-all p-2 rounded-full relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-secondary rounded-full shadow-[0_0_8px_rgba(64,229,108,0.6)]"></span>
+</button>
+<button class="hover:bg-[#1c2026] hover:text-[#00E5FF] transition-all p-2 rounded-full">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-[#00E5FF]/30">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="close-up portrait of professional network engineer in dark tech environment with blue ambient light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGIKlEfLsljIF6ajvvKs9YfKJlY4qW3cKMWgXl9OAnA72gOxsMAM_XyVcitvZUBhM3sj3NvM7vrC9FZ6Ue6x39a49uPlnupaFHSiP4ZmYrhkp_qVVldL0UKDCJBpm7airWeYIsYa2NFT7J_2vDJITTiw9ShCCigG9Z8Pko83776VzzfhCbAV16cecUrQ2-xrzJVGzuPCm_pDQ_C4opLmBB3RqD3vMlZALpzl160zI5jaorsIVQw0qmUzDEmS-zPCciQCGweZxssJ7M"/>
+</div>
+</div>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full w-64 z-40 bg-[#181c22] shadow-r shadow-[#000000] flex flex-col h-full pt-20 pb-6 font-['Inter'] text-xs font-medium uppercase tracking-[0.05em]">
+<div class="px-6 mb-8">
+<div class="text-[#00E5FF] font-bold text-lg mb-1 tracking-tight">ORCHESTRATOR</div>
+<div class="text-slate-500 text-[10px] flex items-center gap-2">
+<span class="w-1.5 h-1.5 bg-secondary rounded-full"></span>
+                ACTIVE SESSION: NOC-04
+            </div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-4 text-slate-500 hover:text-slate-200 px-6 py-3 hover:bg-[#1c2026]/50 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="dashboard">dashboard</span>
+                DASHBOARD
+            </a>
+<a class="flex items-center gap-4 bg-[#1c2026] text-[#00E5FF] border-r-4 border-[#00E5FF] shadow-[0_0_12px_rgba(0,229,255,0.15)] px-6 py-3" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="hub">hub</span>
+                CIRCUIT MAP
+            </a>
+<a class="flex items-center gap-4 text-slate-500 hover:text-slate-200 px-6 py-3 hover:bg-[#1c2026]/50 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="inventory_2">inventory_2</span>
+                ASSET INVENTORY
+            </a>
+<a class="flex items-center gap-4 text-slate-500 hover:text-slate-200 px-6 py-3 hover:bg-[#1c2026]/50 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="terminal">terminal</span>
+                NETWORK LOGS
+            </a>
+<a class="flex items-center gap-4 text-slate-500 hover:text-slate-200 px-6 py-3 hover:bg-[#1c2026]/50 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="monitor_heart">monitor_heart</span>
+                SYSTEM HEALTH
+            </a>
+</nav>
+<div class="px-4 mt-auto space-y-4">
+<button class="w-full bg-primary-container text-on-primary-container py-3 font-bold tracking-widest text-xs flex items-center justify-center gap-2 rounded-sm shadow-[0_0_15px_rgba(0,229,255,0.2)] active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+                NEW CIRCUIT
+            </button>
+<div class="border-t border-slate-700/50 pt-4 space-y-1">
+<a class="flex items-center gap-4 text-slate-500 hover:text-slate-200 px-2 py-2 text-[10px]" href="#">
+<span class="material-symbols-outlined text-base" data-icon="shield">shield</span>
+                    SECURITY
+                </a>
+<a class="flex items-center gap-4 text-slate-500 hover:text-slate-200 px-2 py-2 text-[10px]" href="#">
+<span class="material-symbols-outlined text-base" data-icon="logout">logout</span>
+                    LOG OUT
+                </a>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="ml-64 pt-20 tech-grid min-h-screen">
+<div class="max-w-6xl mx-auto p-8">
+<!-- Header Section -->
+<div class="flex justify-between items-end mb-10">
+<div>
+<nav class="flex text-[10px] text-slate-500 gap-2 mb-2 tracking-[0.2em]">
+<span>ASSETS</span> / <span>CIRCUITRY</span> / <span class="text-primary-container">PROVISION NEW</span>
+</nav>
+<h1 class="text-3xl font-black font-headline tracking-tight text-on-surface">ADD NEW CIRCUIT</h1>
+<p class="text-sm text-on-surface-variant font-medium mt-1 uppercase tracking-wider">Configure high-velocity network asset parameters</p>
+</div>
+<div class="flex gap-4">
+<button class="flex items-center gap-2 px-5 py-2.5 bg-surface-container-highest border border-outline-variant text-on-surface text-xs font-bold uppercase tracking-widest hover:bg-surface-bright transition-all">
+<span class="material-symbols-outlined text-sm" data-icon="upload_file">upload_file</span>
+                        Batch Import
+                    </button>
+<button class="flex items-center gap-2 px-6 py-2.5 bg-primary-container text-on-primary-container text-xs font-bold uppercase tracking-widest shadow-[0_0_20px_rgba(0,229,255,0.3)] hover:brightness-110 transition-all">
+<span class="material-symbols-outlined text-sm" data-icon="save">save</span>
+                        Add Asset
+                    </button>
+</div>
+</div>
+<!-- 4 Data Cards Form -->
+<div class="space-y-8 pb-20">
+<!-- Card 1: Basic Identity -->
+<div class="bg-surface-container rounded-sm p-6 relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-1 h-full bg-primary-container"></div>
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary-container" data-icon="fingerprint">fingerprint</span>
+<h2 class="text-sm font-bold tracking-[0.15em] uppercase text-on-surface">Card 1: Basic Identity</h2>
+<div class="h-[1px] flex-1 bg-gradient-to-r from-outline-variant to-transparent"></div>
+</div>
+<div class="grid grid-cols-2 gap-x-12 gap-y-6">
+<div class="space-y-1.5">
+<label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Circuit ID</label>
+<input class="w-full bg-surface-container-lowest border-none mono-input focus:ring-1 focus:ring-primary-container text-primary-container p-3 text-sm placeholder:text-slate-700" placeholder="CRT-XXXX-000" type="text"/>
+</div>
+<div class="space-y-1.5">
+<label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Circuit Alias</label>
+<input class="w-full bg-surface-container-lowest border-none mono-input focus:ring-1 focus:ring-primary-container text-on-surface p-3 text-sm" placeholder="NY-HQ-PRIMARY" type="text"/>
+</div>
+<div class="space-y-1.5">
+<label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Carrier / ISP</label>
+<select class="w-full bg-surface-container-lowest border-none mono-input focus:ring-1 focus:ring-primary-container text-on-surface p-3 text-sm">
+<option>VERIZON ENTERPRISE</option>
+<option>AT&amp;T BUSINESS</option>
+<option>LUMEN TECHNOLOGIES</option>
+<option>ZAYO GROUP</option>
+</select>
+</div>
+<div class="space-y-1.5">
+<label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Circuit Type</label>
+<select class="w-full bg-surface-container-lowest border-none mono-input focus:ring-1 focus:ring-primary-container text-on-surface p-3 text-sm">
+<option>DIA (Dedicated Internet)</option>
+<option>MPLS (Layer 3)</option>
+<option>P2P (Layer 2)</option>
+<option>WAVELENGTH</option>
+</select>
+</div>
+<div class="space-y-1.5">
+<label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Downlink Bandwidth (Mbps)</label>
+<div class="relative">
+<input class="w-full bg-surface-container-lowest border-none mono-input focus:ring-1 focus:ring-primary-container text-on-surface p-3 text-sm" type="number" value="1000"/>
+<span class="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] text-slate-600 font-bold">MBPS</span>
+</div>
+</div>
+<div class="space-y-1.5">
+<label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Uplink Bandwidth (Mbps)</label>
+<div class="relative">
+<input class="w-full bg-surface-container-lowest border-none mono-input focus:ring-1 focus:ring-primary-container text-on-surface p-3 text-sm" type="number" value="1000"/>
+<span class="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] text-slate-600 font-bold">MBPS</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 2: Topology & Location -->
+<div class="bg-surface-container rounded-sm p-6 relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-primary-container/60"></div>
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary-container" data-icon="location_on">location_on</span>
+<h2 class="text-sm font-bold tracking-[0.15em] uppercase text-on-surface">Card 2: Topology &amp; Location</h2>
+<div class="h-[1px] flex-1 bg-gradient-to-r from-outline-variant to-transparent"></div>
+</div>
+<div class="grid grid-cols-2 gap-x-12 gap-y-6">
+<div class="col-span-2 space-y-1.5">
+<label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Local Site (A-End)</label>
+<input class="w-full bg-surface-container-lowest border-none mono-input focus:ring-1 focus:ring-primary-container text-on-surface p-3 text-sm" placeholder="60 HUDSON ST, NEW YORK, NY 10013 - SUITE 402" type="text"/>
+</div>
+<div class="col-span-2 space-y-1.5">
+<label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Remote Site (Z-End)</label>
+<input class="w-full bg-surface-container-lowest border-none mono-input focus:ring-1 focus:ring-primary-container text-on-surface p-3 text-sm" placeholder="123 CLOUD BLVD, ASHBURN, VA 20147" type="text"/>
+</div>
+<div class="space-y-1.5">
+<label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Local CPE IP</label>
+<input class="w-full bg-surface-container-lowest border-none mono-input focus:ring-1 focus:ring-primary-container text-primary-container p-3 text-sm" placeholder="192.168.100.1" type="text"/>
+</div>
+<div class="space-y-1.5">
+<label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Local Interface</label>
+<input class="w-full bg-surface-container-lowest border-none mono-input focus:ring-1 focus:ring-primary-container text-on-surface p-3 text-sm" placeholder="GigabitEthernet0/0/1" type="text"/>
+</div>
+<div class="space-y-1.5">
+<label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Handoff / Media Type</label>
+<select class="w-full bg-surface-container-lowest border-none mono-input focus:ring-1 focus:ring-primary-container text-on-surface p-3 text-sm">
+<option>SINGLE-MODE FIBER (LC)</option>
+<option>MULTI-MODE FIBER (SC)</option>
+<option>COPPER (RJ-45)</option>
+<option>VIRTUAL CROSS-CONNECT</option>
+</select>
+</div>
+<div class="flex items-end pb-3">
+<div class="flex items-center gap-2 text-[10px] text-slate-500 font-bold italic">
+<span class="material-symbols-outlined text-sm" data-icon="info">info</span>
+                                VERIFY LATENCY OPTIMIZATION ON PROVISIONING
+                            </div>
+</div>
+</div>
+</div>
+<!-- Card 3: Network Parameters -->
+<div class="bg-surface-container rounded-sm p-6 relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-primary-container/40"></div>
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary-container" data-icon="settings_ethernet">settings_ethernet</span>
+<h2 class="text-sm font-bold tracking-[0.15em] uppercase text-on-surface">Card 3: Network Parameters</h2>
+<div class="h-[1px] flex-1 bg-gradient-to-r from-outline-variant to-transparent"></div>
+</div>
+<div class="grid grid-cols-2 gap-x-12 gap-y-6">
+<div class="space-y-1.5">
+<label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">WAN IP / P2P IP</label>
+<input class="w-full bg-surface-container-lowest border-none mono-input focus:ring-1 focus:ring-primary-container text-on-surface p-3 text-sm" placeholder="203.0.113.42/30" type="text"/>
+</div>
+<div class="space-y-1.5">
+<label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Gateway / PE IP</label>
+<input class="w-full bg-surface-container-lowest border-none mono-input focus:ring-1 focus:ring-primary-container text-on-surface p-3 text-sm" placeholder="203.0.113.41" type="text"/>
+</div>
+<div class="space-y-1.5">
+<label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">VLAN ID</label>
+<input class="w-full bg-surface-container-lowest border-none mono-input focus:ring-1 focus:ring-primary-container text-on-surface p-3 text-sm" placeholder="1004" type="text"/>
+</div>
+<div class="space-y-1.5">
+<label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Routing Protocol</label>
+<select class="w-full bg-surface-container-lowest border-none mono-input focus:ring-1 focus:ring-primary-container text-on-surface p-3 text-sm">
+<option>BGP (External)</option>
+<option>OSPF (Area 0)</option>
+<option>STATIC ROUTES</option>
+<option>EIGRP</option>
+</select>
+</div>
+</div>
+<!-- Decorative Element -->
+<div class="mt-8 p-4 bg-surface-container-lowest border border-outline-variant/30 opacity-60">
+<div class="text-[10px] font-mono text-slate-500 mb-2">AUTO-GENERATED CONFIG SNIPPET (PREVIEW)</div>
+<div class="text-[11px] font-mono text-primary-container">
+                            interface GigabitEthernet0/1<br/>
+                             description [NY-HQ-PRIMARY] - Verizon CID: CRT-XXXX-000<br/>
+                             ip address 203.0.113.42 255.255.255.252<br/>
+                             no shutdown
+                        </div>
+</div>
+</div>
+<!-- Card 4: Business & Monitoring -->
+<div class="bg-surface-container rounded-sm p-6 relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-secondary"></div>
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-secondary" data-icon="monitoring">monitoring</span>
+<h2 class="text-sm font-bold tracking-[0.15em] uppercase text-on-surface">Card 4: Business &amp; Monitoring</h2>
+<div class="h-[1px] flex-1 bg-gradient-to-r from-outline-variant to-transparent"></div>
+</div>
+<div class="grid grid-cols-2 gap-x-12 gap-y-6">
+<div class="space-y-1.5">
+<label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Account Manager (AM)</label>
+<input class="w-full bg-surface-container-lowest border-none mono-input focus:ring-1 focus:ring-primary-container text-on-surface p-3 text-sm" placeholder="JONATHAN CRANE" type="text"/>
+</div>
+<div class="space-y-1.5">
+<label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">NOC Contact / Hotline</label>
+<input class="w-full bg-surface-container-lowest border-none mono-input focus:ring-1 focus:ring-primary-container text-on-surface p-3 text-sm" placeholder="+1 (800) 555-0199" type="text"/>
+</div>
+<div class="space-y-1.5">
+<label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Service Level (SLA)</label>
+<select class="w-full bg-surface-container-lowest border-none mono-input focus:ring-1 focus:ring-primary-container text-on-surface p-3 text-sm">
+<option>PLATINUM (99.999%)</option>
+<option>GOLD (99.99%)</option>
+<option>SILVER (99.9%)</option>
+<option>BEST EFFORT</option>
+</select>
+</div>
+<div class="space-y-1.5">
+<label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Contract Expiry Date</label>
+<input class="w-full bg-surface-container-lowest border-none mono-input focus:ring-1 focus:ring-primary-container text-on-surface p-3 text-sm appearance-none" type="date"/>
+</div>
+<div class="flex items-center justify-between bg-surface-container-lowest p-4 rounded-sm border border-outline-variant/20">
+<div>
+<label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Monitoring Status</label>
+<p class="text-[10px] text-slate-600 mt-1 uppercase">Activate real-time SNMP polling</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div>
+</label>
+</div>
+<div class="space-y-1.5">
+<label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Utilization Threshold (%)</label>
+<div class="flex items-center gap-4">
+<input class="flex-1 accent-secondary bg-surface-container-lowest h-2 rounded-lg appearance-none cursor-pointer" type="range"/>
+<span class="bg-surface-container-lowest px-3 py-1 mono-input text-xs text-secondary font-bold border border-secondary/30">85%</span>
+</div>
+</div>
+<div class="space-y-1.5">
+<label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Circuit Role</label>
+<div class="flex gap-2">
+<button class="flex-1 py-2 text-[10px] font-bold bg-primary-container text-on-primary-container rounded-sm uppercase tracking-tighter">Primary</button>
+<button class="flex-1 py-2 text-[10px] font-bold bg-surface-container-lowest text-slate-500 border border-outline-variant/30 rounded-sm uppercase tracking-tighter hover:bg-surface-variant transition-colors">Secondary</button>
+</div>
+</div>
+<div class="flex items-center gap-3 bg-error-container/10 p-4 border border-error-container/20">
+<span class="material-symbols-outlined text-error" data-icon="report">report</span>
+<div>
+<div class="text-[10px] font-bold text-error uppercase">Auto-Escalation Enabled</div>
+<div class="text-[9px] text-slate-500 uppercase">Alerting levels: CRITICAL / P1</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Summary Actions -->
+<div class="pt-8 flex justify-end gap-6 items-center">
+<span class="text-xs text-slate-500 font-mono tracking-tighter">SYSTEM READY: NO CONFLICTS DETECTED</span>
+<button class="text-slate-500 hover:text-on-surface text-xs font-bold uppercase tracking-widest transition-colors">Discard Draft</button>
+<button class="bg-primary-container text-on-primary-container px-10 py-4 font-black uppercase tracking-[0.2em] text-sm shadow-[0_0_30px_rgba(0,229,255,0.4)] hover:scale-105 active:scale-95 transition-all">
+                        Commit To Backbone
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<!-- FAB Suppression Rule followed: No FAB on Details/Transactional screens -->
+</body></html>
