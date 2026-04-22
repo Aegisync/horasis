@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Horasis Operations | Command Center</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-on-surface": "#2d3137",
+                        "secondary-fixed": "#69ff87",
+                        "on-error": "#690005",
+                        "inverse-primary": "#006875",
+                        "background": "#10141a",
+                        "tertiary-fixed-dim": "#ffb4a8",
+                        "tertiary-fixed": "#ffdad4",
+                        "surface-dim": "#10141a",
+                        "on-primary": "#00363d",
+                        "surface-container-highest": "#31353c",
+                        "surface-container-low": "#181c22",
+                        "primary-container": "#00e5ff",
+                        "on-background": "#dfe2eb",
+                        "on-tertiary-container": "#b60000",
+                        "on-primary-container": "#00626e",
+                        "tertiary": "#ffe8e4",
+                        "primary-fixed-dim": "#00daf3",
+                        "secondary-fixed-dim": "#3ce36a",
+                        "surface-bright": "#353940",
+                        "on-tertiary-fixed": "#410000",
+                        "on-secondary-fixed-variant": "#00531e",
+                        "inverse-surface": "#dfe2eb",
+                        "outline": "#849396",
+                        "surface-container-lowest": "#0a0e14",
+                        "on-secondary-fixed": "#002108",
+                        "on-secondary": "#003912",
+                        "surface-variant": "#31353c",
+                        "secondary-container": "#02c953",
+                        "surface-container-high": "#262a31",
+                        "on-tertiary": "#690000",
+                        "on-primary-fixed-variant": "#004f58",
+                        "on-primary-fixed": "#001f24",
+                        "surface-tint": "#00daf3",
+                        "primary": "#c3f5ff",
+                        "tertiary-container": "#ffc2b8",
+                        "on-secondary-container": "#004d1b",
+                        "surface-container": "#1c2026",
+                        "error-container": "#93000a",
+                        "outline-variant": "#3b494c",
+                        "primary-fixed": "#9cf0ff",
+                        "secondary": "#40e56c",
+                        "error": "#ffb4ab",
+                        "on-surface": "#dfe2eb",
+                        "on-tertiary-fixed-variant": "#930000",
+                        "on-error-container": "#ffdad6",
+                        "on-surface-variant": "#bac9cc",
+                        "surface": "#10141a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "display": ["Space Grotesk"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #10141a; color: #dfe2eb; }
+        .font-display { font-family: 'Space Grotesk', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glow-cyan { text-shadow: 0 0 12px rgba(0, 229, 255, 0.6); }
+        .glow-box-cyan { box-shadow: 0 0 20px rgba(0, 229, 255, 0.15); }
+        .glow-red { box-shadow: 0 0 15px rgba(182, 0, 0, 0.4); }
+        .pulse-node { animation: pulse 2s infinite ease-in-out; }
+        @keyframes pulse {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.85); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        .flash-red { animation: flash 1s infinite steps(2); }
+        @keyframes flash {
+            from { background-color: #b60000; box-shadow: 0 0 12px #b60000; }
+            to { background-color: #31353c; box-shadow: none; }
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-[#10141a] flex justify-between items-center w-full px-6 h-16 shadow-[0_0_12px_rgba(0,229,255,0.08)]">
+<div class="flex items-center gap-4">
+<span class="font-['Space_Grotesk'] text-[#00E5FF] font-black text-xl tracking-[0.1em] uppercase">HORASIS OPS</span>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<nav class="flex gap-6">
+<a class="font-['Space_Grotesk'] font-bold tracking-tight text-[#00E5FF] border-b-2 border-[#00E5FF] px-1 h-16 flex items-center" href="#">Command</a>
+<a class="font-['Space_Grotesk'] font-bold tracking-tight text-slate-400 hover:bg-[#31353c] transition-colors px-1 h-16 flex items-center" href="#">Topology</a>
+<a class="font-['Space_Grotesk'] font-bold tracking-tight text-slate-400 hover:bg-[#31353c] transition-colors px-1 h-16 flex items-center" href="#">Alerts</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-slate-400 hover:text-[#00E5FF] transition-colors scale-95 active:duration-100">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-slate-400 hover:text-[#00E5FF] transition-colors scale-95 active:duration-100">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-container-highest overflow-hidden border border-outline-variant">
+<img alt="User avatar" data-alt="Close up of a professional technician in a dark room illuminated by neon blue screens reflecting in their glasses." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxNqOdPT6hb-Jlm_XgMqcM5RehF26LNQ_mqtAG9Utllw8KnKj5gTDxS-TfCWkgWnq6MIyJJqIZP03kFk7D6zpnLW8bo5h4P_0rDyOixGmx-z0H-FpfV29SBzBTC6gdeUf8JmMQyviAER8Vunh3_gZsfxb4a-2TOik6PTwqlP6XWo0DXu5lVVc9nz0RnxvpK6V4qzoxse5fL8EuMFTauGvH9d6Mk4haEbTbTqNH3Z9sRis7c7J2JX0eaOZszseM5krqELmE4ze8Jel7"/>
+</div>
+</div>
+</header>
+<!-- Sidebar Navigation -->
+<aside class="hidden md:flex h-screen w-64 fixed left-0 top-0 bg-[#181c22] border-r border-[#31353c]/20 flex-col gap-2 pt-20 p-4 z-40">
+<div class="mb-8 px-2">
+<h2 class="font-['Space_Grotesk'] text-[#00E5FF] font-bold text-lg">HORASIS</h2>
+<p class="font-['Inter'] text-xs font-semibold uppercase tracking-widest text-secondary">V-4.0 ONLINE</p>
+</div>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 p-3 font-['Inter'] text-xs font-semibold uppercase tracking-widest transition-all duration-300 ease-in-out bg-[#1c2026] text-[#00E5FF] border-l-4 border-[#00E5FF] shadow-[inset_0_0_10px_rgba(0,229,255,0.1)]" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                Command
+            </a>
+<a class="flex items-center gap-3 p-3 font-['Inter'] text-xs font-semibold uppercase tracking-widest transition-all duration-300 ease-in-out text-slate-500 hover:text-slate-300 hover:bg-[#1c2026]" href="#">
+<span class="material-symbols-outlined">hub</span>
+                Topology
+            </a>
+<a class="flex items-center gap-3 p-3 font-['Inter'] text-xs font-semibold uppercase tracking-widest transition-all duration-300 ease-in-out text-slate-500 hover:text-slate-300 hover:bg-[#1c2026]" href="#">
+<span class="material-symbols-outlined">emergency</span>
+                Alerts
+            </a>
+<a class="flex items-center gap-3 p-3 font-['Inter'] text-xs font-semibold uppercase tracking-widest transition-all duration-300 ease-in-out text-slate-500 hover:text-slate-300 hover:bg-[#1c2026]" href="#">
+<span class="material-symbols-outlined">timer</span>
+                Circuits
+            </a>
+<a class="flex items-center gap-3 p-3 font-['Inter'] text-xs font-semibold uppercase tracking-widest transition-all duration-300 ease-in-out text-slate-500 hover:text-slate-300 hover:bg-[#1c2026]" href="#">
+<span class="material-symbols-outlined">history</span>
+                Audits
+            </a>
+</nav>
+</aside>
+<!-- Main Content Canvas -->
+<main class="md:ml-64 pt-20 p-6 min-h-screen bg-background">
+<!-- [Hero Section - Top Row] -->
+<div class="grid grid-cols-12 gap-6 mb-8">
+<!-- Uptime Gauge -->
+<div class="col-span-12 lg:col-span-7 bg-surface-container rounded-lg p-6 flex items-center justify-between glow-box-cyan">
+<div>
+<h3 class="font-display text-label-md uppercase tracking-widest text-on-surface-variant mb-1">Uptime Performance</h3>
+<div class="flex items-baseline gap-2">
+<span class="text-6xl font-display font-bold text-primary-container glow-cyan tracking-tighter">99.98%</span>
+<span class="text-secondary text-sm font-medium">+0.02% 24h</span>
+</div>
+<p class="mt-4 text-sm text-on-surface-variant/80 font-medium">
+                        Total Downtime this Month: <span class="text-primary">15m</span>
+</p>
+<div class="mt-6 flex gap-4">
+<div class="flex flex-col">
+<span class="text-[10px] text-on-surface-variant uppercase tracking-widest">SLA Target</span>
+<span class="text-sm font-mono font-bold text-on-surface">99.95%</span>
+</div>
+<div class="w-px h-8 bg-outline-variant/30"></div>
+<div class="flex flex-col">
+<span class="text-[10px] text-on-surface-variant uppercase tracking-widest">MTTR Avg</span>
+<span class="text-sm font-mono font-bold text-on-surface">12.4m</span>
+</div>
+</div>
+</div>
+<div class="relative w-40 h-40 flex items-center justify-center">
+<svg class="w-full h-full transform -rotate-90">
+<circle class="text-surface-container-highest" cx="80" cy="80" fill="transparent" r="70" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-primary-container" cx="80" cy="80" fill="transparent" r="70" stroke="currentColor" stroke-dasharray="440" stroke-dashoffset="8" stroke-width="12"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-4xl text-primary-container animate-pulse">speed</span>
+</div>
+</div>
+</div>
+<!-- Alert Summary Cards -->
+<div class="col-span-12 lg:col-span-5 grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Critical Alert -->
+<div class="bg-on-tertiary-container/20 border-l-4 border-on-tertiary-container rounded-lg p-6 flex flex-col justify-between glow-red">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-on-tertiary-container text-3xl">emergency</span>
+<span class="text-[10px] bg-on-tertiary-container text-on-error-container px-2 py-1 rounded-full font-bold">LIVE</span>
+</div>
+<div>
+<h4 class="text-2xl font-display font-bold text-white tracking-tight">02 CRITICAL</h4>
+<p class="text-on-tertiary-container text-xs font-semibold uppercase tracking-widest">Service Interruption</p>
+</div>
+</div>
+<!-- Warning Alert -->
+<div class="bg-tertiary-container/10 border-l-4 border-tertiary-container rounded-lg p-6 flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-tertiary-container text-3xl">warning</span>
+</div>
+<div>
+<h4 class="text-2xl font-display font-bold text-white tracking-tight">05 WARNING</h4>
+<p class="text-tertiary-container text-xs font-semibold uppercase tracking-widest">Degraded Performance</p>
+</div>
+</div>
+</div>
+</div>
+<!-- [Real-time Topology Layer - Middle Row] -->
+<section class="bg-surface-container-low rounded-lg p-8 mb-8 relative overflow-hidden">
+<div class="flex justify-between items-end mb-8">
+<div>
+<h2 class="font-display text-2xl font-bold text-on-surface">Global Network Presence</h2>
+<div class="flex items-center gap-2 mt-1">
+<span class="inline-block w-2 h-2 rounded-full bg-secondary shadow-[0_0_8px_2px_rgba(64,229,108,0.4)]"></span>
+<p class="text-sm font-mono text-on-surface-variant uppercase tracking-widest">100 Active Nodes Cluster-7</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-[#00E5FF]"></div>
+<span class="text-[10px] text-on-surface-variant uppercase font-bold">Operational</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-on-tertiary-container"></div>
+<span class="text-[10px] text-on-surface-variant uppercase font-bold">Failure</span>
+</div>
+</div>
+</div>
+<div class="flex gap-8">
+<!-- 10x10 Topology Grid -->
+<div class="flex-grow grid grid-cols-10 gap-4 p-4 bg-surface-container-lowest/50 rounded-lg backdrop-blur-sm">
+<!-- Generating 100 dots -->
+<!-- Standard Nodes (98) -->
+<script>
+                        for(let i=0; i<42; i++) document.write('<div class="w-3 h-3 rounded-full bg-[#00E5FF] pulse-node shadow-[0_0_6px_#00E5FF]"></div>');
+                    </script>
+<div class="w-3 h-3 rounded-full flash-red"></div>
+<script>
+                        for(let i=0; i<25; i++) document.write('<div class="w-3 h-3 rounded-full bg-[#00E5FF] pulse-node shadow-[0_0_6px_#00E5FF]"></div>');
+                    </script>
+<div class="w-3 h-3 rounded-full flash-red"></div>
+<script>
+                        for(let i=0; i<31; i++) document.write('<div class="w-3 h-3 rounded-full bg-[#00E5FF] pulse-node shadow-[0_0_6px_#00E5FF]"></div>');
+                    </script>
+</div>
+<!-- Side Drawer - Details -->
+<div class="w-80 bg-surface-container rounded-lg p-6 border-l border-primary-container/20 translate-x-4">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-on-tertiary-container">error</span>
+<h4 class="font-display font-bold text-sm uppercase tracking-wider">Node Critical Detail</h4>
+</div>
+<div class="space-y-6">
+<div>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-widest mb-1">Circuit ID</p>
+<p class="font-mono text-sm font-bold text-primary">CTG-DIA-SH-001</p>
+</div>
+<div>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-widest mb-1">Status</p>
+<p class="font-mono text-sm font-bold text-on-tertiary-container uppercase">Loss of Signal</p>
+</div>
+<div>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-widest mb-1">Location</p>
+<p class="text-sm font-medium">Shanghai Tech Hub, CN</p>
+</div>
+<div class="pt-4 border-t border-outline-variant/30">
+<button class="w-full bg-surface-container-highest hover:bg-primary-container hover:text-on-primary-container transition-all py-2 rounded text-[10px] font-bold uppercase tracking-widest">
+                                Open Incident Ticket
+                            </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Atmospheric BG Map (Faded) -->
+<div class="absolute inset-0 -z-10 opacity-5 pointer-events-none">
+<img alt="Global Network Topology" data-alt="Dark aesthetic world map with interconnected glowing digital lines representing fiber optic submarine cables and satellites." data-location="Global" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxzciM6RT_86d7ce9pMoUf1ZP-wXacY_nTUxIBJuPWrMxnWHhUNvpJU81vaANIr1z739V0_Xm8XMeHvsw05osyTazMmKezRvR4vyc3Cgf4o6v2tzdzVwhrLsRs-rJ-NKZ1bPmza2tXvnOheSf05e6lJZBL9HBVpsjdOz_7yOc67fyt4chSpZlE2IdJphoNTtoaTUkalh--En_mHgRPVObBibopf6jOQS0JADPa3Lzqbht37siUz3egBi5UeYRbum2gYr2EO6VLTZgU"/>
+</div>
+</section>
+<!-- [Planning & Oversight Layer - Bottom Row] -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<!-- Left Column: Circuit Expiries -->
+<div class="bg-surface-container p-6 rounded-lg">
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-display text-lg font-bold">Circuit Expiries &amp; Lifecycle</h3>
+<span class="material-symbols-outlined text-on-surface-variant">hourglass_empty</span>
+</div>
+<div class="space-y-6">
+<!-- Item 1 -->
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-mono">
+<span class="text-on-surface">CTG-DIA-SH-099</span>
+<span class="text-on-tertiary-container font-bold">15 Days Remaining</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-on-tertiary-container w-[80%]"></div>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-mono">
+<span class="text-on-surface">SIN-DIA-PRO-102</span>
+<span class="text-tertiary-container font-bold">42 Days Remaining</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-tertiary-container w-[55%]"></div>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-mono">
+<span class="text-on-surface">NYC-TRANSIT-004</span>
+<span class="text-secondary font-bold">184 Days Remaining</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-[20%]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Audit Log -->
+<div class="bg-surface-container p-6 rounded-lg">
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-display text-lg font-bold">Recent Forensic Audit Log</h3>
+<span class="material-symbols-outlined text-on-surface-variant">history_edu</span>
+</div>
+<div class="space-y-4">
+<div class="flex gap-4 p-3 bg-surface-container-lowest rounded border-l-2 border-primary-container/40">
+<span class="material-symbols-outlined text-primary-container text-xl">person</span>
+<div>
+<p class="text-xs text-on-surface-variant"><span class="text-primary font-bold">Admin Chen</span> updated 'util_threshold' to 95% on CTG-DIA-BJ-004</p>
+<span class="text-[10px] font-mono opacity-50 uppercase tracking-tighter">5m ago</span>
+</div>
+</div>
+<div class="flex gap-4 p-3 hover:bg-surface-container-lowest/50 transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant text-xl">shield</span>
+<div>
+<p class="text-xs text-on-surface-variant"><span class="text-on-surface font-bold">SecBot</span> blocked unauthorized SSH attempt on SIN-GW-001</p>
+<span class="text-[10px] font-mono opacity-50 uppercase tracking-tighter">12m ago</span>
+</div>
+</div>
+<div class="flex gap-4 p-3 hover:bg-surface-container-lowest/50 transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant text-xl">settings_input_component</span>
+<div>
+<p class="text-xs text-on-surface-variant"><span class="text-on-surface font-bold">Operator S. Miller</span> applied BGP filter 'AS-SET-PROD'</p>
+<span class="text-[10px] font-mono opacity-50 uppercase tracking-tighter">1h ago</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- FAB (Suppressed on Dashboard as per instructions but kept structure for reference) -->
+<!-- Not rendered as current screen is 'Dashboard' and instructions suggest focusing on main content for this task -->
+</body></html>
