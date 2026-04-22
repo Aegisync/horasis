@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SENTINEL | Chanel China Visibility Report</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#181c22",
+                        "outline-variant": "#3b494c",
+                        "primary-container": "#00e5ff",
+                        "primary": "#c3f5ff",
+                        "surface-dim": "#10141a",
+                        "surface-tint": "#00daf3",
+                        "surface-container-high": "#262a31",
+                        "on-surface": "#dfe2eb",
+                        "on-primary": "#00363d",
+                        "error-container": "#93000a",
+                        "on-secondary-fixed-variant": "#00531e",
+                        "inverse-primary": "#006875",
+                        "tertiary-fixed-dim": "#ffb4a8",
+                        "on-background": "#dfe2eb",
+                        "on-error-container": "#ffdad6",
+                        "on-secondary-fixed": "#002108",
+                        "tertiary-fixed": "#ffdad4",
+                        "surface-bright": "#353940",
+                        "inverse-surface": "#dfe2eb",
+                        "secondary-container": "#02c953",
+                        "on-secondary-container": "#004d1b",
+                        "on-surface-variant": "#bac9cc",
+                        "error": "#ffb4ab",
+                        "tertiary-container": "#ffc2b8",
+                        "surface-variant": "#31353c",
+                        "on-error": "#690005",
+                        "secondary": "#40e56c",
+                        "secondary-fixed-dim": "#3ce36a",
+                        "on-secondary": "#003912",
+                        "surface-container": "#1c2026",
+                        "surface-container-highest": "#31353c",
+                        "on-tertiary": "#690000",
+                        "surface-container-lowest": "#0a0e14",
+                        "inverse-on-surface": "#2d3137",
+                        "background": "#10141a",
+                        "on-primary-fixed": "#001f24",
+                        "tertiary": "#ffe8e4",
+                        "primary-fixed-dim": "#00daf3",
+                        "on-primary-fixed-variant": "#004f58",
+                        "surface": "#10141a",
+                        "on-tertiary-fixed": "#410000",
+                        "outline": "#849396",
+                        "on-tertiary-fixed-variant": "#930000",
+                        "on-primary-container": "#00626e",
+                        "primary-fixed": "#9cf0ff",
+                        "secondary-fixed": "#69ff87",
+                        "on-tertiary-container": "#b60000"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "display": ["Space Grotesk"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, .font-headline { font-family: 'Space Grotesk', sans-serif; }
+        .glass-panel {
+            background: rgba(49, 53, 60, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(132, 147, 150, 0.15);
+        }
+        .glow-secondary { box-shadow: 0 0 12px 2px rgba(64, 229, 108, 0.3); }
+        .glow-primary { box-shadow: 0 0 12px 2px rgba(0, 229, 255, 0.3); }
+    </style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 h-16 bg-[#10141a]/80 backdrop-blur-xl shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3">
+<div class="text-2xl font-bold tracking-tighter text-[#00E5FF] drop-shadow-[0_0_8px_rgba(0,229,255,0.4)] font-['Space_Grotesk']">SENTINEL</div>
+<div class="h-4 w-[1px] bg-outline-variant"></div>
+<div class="flex items-center gap-2">
+<img alt="Chanel" class="h-5 invert" data-alt="minimalist luxury brand logo of Chanel in white on dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPoj2J0otCzIhUyRhY2qVNq1xC48nzwaUxQFU-raggyuAcifMHO2jX64uWzGoSgdoVfKTQ7kLclHSuhtlADggEeTmeuJtUmrO0LrwqXrjWHcHlCIbgjSTEhUb4ifmgg4KRxcJufweBwBntTVt-Js-gkZ0ZjQJ9GlQ1HuP6FdncOyX5Ti0SvePHx_8CuvvMhpJPSCPUw36UZheor3JTy1iJnPwadJg7PT_A1VDvaQFzalrhqnGHoPFoQ-gYQokTC7cb_KWiOP1nzlqs"/>
+<span class="text-xs font-bold tracking-widest text-on-surface-variant">CHINA</span>
+</div>
+</div>
+<nav class="hidden md:flex items-center gap-6 font-['Space_Grotesk'] text-sm tracking-wider uppercase">
+<a class="text-[#00E5FF] border-b-2 border-[#00E5FF] h-16 flex items-center px-1" href="#">Network Pulse</a>
+<a class="text-slate-400 hover:text-white transition-colors duration-300 h-16 flex items-center px-1" href="#">Traffic Analysis</a>
+<a class="text-slate-400 hover:text-white transition-colors duration-300 h-16 flex items-center px-1" href="#">SLA Reports</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 bg-surface-container px-3 py-1.5 rounded-lg border border-outline-variant/20">
+<span class="material-symbols-outlined text-primary-container text-lg">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-xs w-32 placeholder:text-outline" placeholder="Search Node..." type="text"/>
+</div>
+<div class="flex items-center gap-3">
+<button class="p-2 text-slate-400 hover:bg-[#31353c] rounded-lg transition-colors"><span class="material-symbols-outlined">notifications_active</span></button>
+<button class="p-2 text-slate-400 hover:bg-[#31353c] rounded-lg transition-colors"><span class="material-symbols-outlined">tune</span></button>
+<img alt="User" class="w-8 h-8 rounded-full border border-primary-container/30" data-alt="professional portrait of a tech executive in clean studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-31VcA2VdydtTK3nFPAHPCN8tszCE6NtLyTYoUb3ulXO0IqFCxoxRFDXP6N3Ur5GFnjMembb467-nsiRg45cxui5hozuXuv0JEAR6W_hvfCJVvxl1zK-0pzNvcRlLKBQwnzQ_o9o5FBgUWJnI60UqQjyGAyamszQAx4FNtBI8jJ8oeYoZYsoSewwYQx1PNgCHLxvrAe414rfL4B-NpFhxmv-_Nbhebu2Olvy2Z1hS-Kp4EUXeXIvcWGcPfGB9gld2MfCusZ7cSpdd"/>
+</div>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-screen flex flex-col pt-20 pb-6 w-64 bg-[#181c22] shadow-2xl z-40 hidden lg:flex">
+<div class="px-6 mb-8">
+<div class="flex flex-col">
+<span class="text-lg font-black text-[#00E5FF] font-['Space_Grotesk'] tracking-tighter">SENTINEL CORE</span>
+<span class="text-[10px] font-medium text-slate-500 tracking-[0.2em]">V.2.0.4-ACTIVE</span>
+</div>
+</div>
+<nav class="flex-1 flex flex-col gap-1 px-3">
+<a class="flex items-center gap-3 px-3 py-3 bg-[#1c2026] text-[#00E5FF] shadow-[inset_4px_0_0_0_#00E5FF] transition-all duration-200" href="#">
+<span class="material-symbols-outlined">monitor_heart</span>
+<span class="font-['Space_Grotesk'] font-medium text-xs uppercase tracking-[0.05em]">Network Pulse</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 text-slate-500 hover:text-slate-200 hover:bg-[#1c2026] hover:translate-x-1 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">query_stats</span>
+<span class="font-['Space_Grotesk'] font-medium text-xs uppercase tracking-[0.05em]">Traffic Analysis</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 text-slate-500 hover:text-slate-200 hover:bg-[#1c2026] hover:translate-x-1 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">timeline</span>
+<span class="font-['Space_Grotesk'] font-medium text-xs uppercase tracking-[0.05em]">Capacity Forecast</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 text-slate-500 hover:text-slate-200 hover:bg-[#1c2026] hover:translate-x-1 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="font-['Space_Grotesk'] font-medium text-xs uppercase tracking-[0.05em]">SLA Reports</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 text-slate-500 hover:text-slate-200 hover:bg-[#1c2026] hover:translate-x-1 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-['Space_Grotesk'] font-medium text-xs uppercase tracking-[0.05em]">Billing Metrics</span>
+</a>
+</nav>
+<div class="px-3 mt-auto">
+<button class="w-full py-3 bg-primary-container text-on-primary-container font-bold text-xs uppercase tracking-widest rounded-lg flex items-center justify-center gap-2 mb-6">
+<span class="material-symbols-outlined text-sm">rocket_launch</span>
+                Deploy Node
+            </button>
+<div class="flex flex-col gap-1 border-t border-outline-variant/10 pt-4">
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 hover:text-slate-200 transition-all text-xs uppercase tracking-wider" href="#">
+<span class="material-symbols-outlined text-lg">settings</span>
+                    Settings
+                </a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 hover:text-slate-200 transition-all text-xs uppercase tracking-wider" href="#">
+<span class="material-symbols-outlined text-lg">contact_support</span>
+                    Support
+                </a>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="lg:ml-64 pt-24 px-8 pb-12 min-h-screen">
+<!-- Header & Action Bar -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+<div>
+<div class="flex items-center gap-3 mb-2">
+<span class="px-2 py-0.5 bg-secondary/10 text-secondary text-[10px] font-bold tracking-widest uppercase rounded border border-secondary/20">Monthly Report</span>
+<span class="text-on-surface-variant text-sm font-medium tracking-tight">Period: October 2023 — Chanel China Infrastructure</span>
+</div>
+<h1 class="text-4xl font-black tracking-tighter text-on-surface">Visibility Audit Dashboard</h1>
+</div>
+<div class="flex items-center gap-3">
+<button class="px-5 py-2.5 bg-surface-container-highest text-on-surface font-semibold text-xs uppercase tracking-widest flex items-center gap-2 rounded-lg hover:bg-surface-bright transition-all">
+<span class="material-symbols-outlined text-lg">calendar_month</span>
+                    Schedule Weekly
+                </button>
+<button class="px-6 py-2.5 bg-primary-container text-on-primary-container font-bold text-xs uppercase tracking-widest flex items-center gap-2 rounded-lg shadow-[0_0_20px_rgba(0,229,255,0.25)] hover:scale-[1.02] active:scale-95 transition-all">
+<span class="material-symbols-outlined text-lg">picture_as_pdf</span>
+                    Export Professional PDF
+                </button>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-12 gap-6">
+<!-- Quality Score Gauge -->
+<div class="col-span-12 lg:col-span-4 bg-surface-container rounded-xl p-8 flex flex-col justify-between relative overflow-hidden group">
+<div class="absolute -top-12 -right-12 w-48 h-48 bg-primary/5 rounded-full blur-3xl"></div>
+<div class="relative z-10">
+<div class="flex justify-between items-start mb-8">
+<div>
+<h3 class="text-xs font-bold text-outline uppercase tracking-[0.2em] mb-1">Infrastructure Health</h3>
+<p class="text-on-surface-variant text-xs">Composite Quality Score</p>
+</div>
+<span class="material-symbols-outlined text-secondary text-2xl">verified</span>
+</div>
+<div class="flex flex-col items-center py-4">
+<div class="relative w-48 h-48 flex items-center justify-center">
+<!-- SVG Gauge -->
+<svg class="w-full h-full -rotate-90">
+<circle class="text-surface-container-highest" cx="96" cy="96" fill="none" r="88" stroke="currentColor" stroke-width="12"></circle>
+<circle class="text-secondary glow-secondary transition-all duration-1000" cx="96" cy="96" fill="none" r="88" stroke="currentColor" stroke-dasharray="552.92" stroke-dashoffset="11" stroke-width="12"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="text-6xl font-black tracking-tighter text-on-surface">98</span>
+<span class="text-xs font-bold text-outline uppercase tracking-widest">Target: 95+</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-2 mt-8">
+<div class="text-center">
+<p class="text-[10px] text-outline uppercase font-bold mb-1">Ping</p>
+<p class="text-sm font-semibold text-on-surface">12ms</p>
+</div>
+<div class="text-center border-x border-outline-variant/20">
+<p class="text-[10px] text-outline uppercase font-bold mb-1">Jitter</p>
+<p class="text-sm font-semibold text-on-surface">1.2ms</p>
+</div>
+<div class="text-center">
+<p class="text-[10px] text-outline uppercase font-bold mb-1">Loss</p>
+<p class="text-sm font-semibold text-secondary">0.00%</p>
+</div>
+</div>
+</div>
+</div>
+<!-- KPI Cards Summary -->
+<div class="col-span-12 lg:col-span-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Uptime -->
+<div class="bg-surface-container rounded-xl p-6 flex flex-col justify-between border-b-4 border-secondary/40">
+<div>
+<div class="flex items-center gap-2 text-secondary mb-4">
+<span class="material-symbols-outlined">check_circle</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">SLA Status: Pass</span>
+</div>
+<h4 class="text-xs font-bold text-outline uppercase tracking-widest mb-1">Global Uptime</h4>
+<div class="text-4xl font-black tracking-tighter text-on-surface">99.98%</div>
+</div>
+<div class="mt-4 pt-4 border-t border-outline-variant/10">
+<p class="text-[10px] text-on-surface-variant leading-relaxed">Network availability maintained above the 99.9% contractual baseline for Chanel CN.</p>
+</div>
+</div>
+<!-- Downtime -->
+<div class="bg-surface-container rounded-xl p-6 flex flex-col justify-between border-b-4 border-primary/40">
+<div>
+<div class="flex items-center gap-2 text-primary-container mb-4">
+<span class="material-symbols-outlined">timer</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Accumulated</span>
+</div>
+<h4 class="text-xs font-bold text-outline uppercase tracking-widest mb-1">Total Downtime</h4>
+<div class="text-4xl font-black tracking-tighter text-on-surface">08:42</div>
+<span class="text-[10px] font-medium text-outline uppercase">Min:Sec this month</span>
+</div>
+<div class="mt-4 pt-4 border-t border-outline-variant/10">
+<div class="flex items-center justify-between">
+<span class="text-[10px] font-bold text-outline uppercase">Prev Month</span>
+<span class="text-[10px] font-bold text-secondary">-14% Improvement</span>
+</div>
+</div>
+</div>
+<!-- MTBF -->
+<div class="bg-surface-container rounded-xl p-6 flex flex-col justify-between border-b-4 border-tertiary-container/40">
+<div>
+<div class="flex items-center gap-2 text-tertiary-fixed-dim mb-4">
+<span class="material-symbols-outlined">query_stats</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Stability Index</span>
+</div>
+<h4 class="text-xs font-bold text-outline uppercase tracking-widest mb-1">MTBF</h4>
+<div class="text-4xl font-black tracking-tighter text-on-surface">744h</div>
+<span class="text-[10px] font-medium text-outline uppercase">Mean Time Between Failures</span>
+</div>
+<div class="mt-4 pt-4 border-t border-outline-variant/10">
+<p class="text-[10px] text-on-surface-variant leading-relaxed">No major core backbone outages recorded in the Shanghai/Beijing region.</p>
+</div>
+</div>
+<!-- Performance Distribution Chart (Wide) -->
+<div class="col-span-1 md:col-span-3 bg-surface-container rounded-xl p-6 relative overflow-hidden">
+<div class="flex items-center justify-between mb-8">
+<div>
+<h3 class="text-sm font-bold text-on-surface uppercase tracking-widest">Performance Distribution</h3>
+<p class="text-xs text-outline">Latent Peak Distribution — October Aggregate</p>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary-container"></div>
+<span class="text-[10px] font-bold text-outline uppercase">Edge Nodes</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+<span class="text-[10px] font-bold text-outline uppercase">Core API</span>
+</div>
+</div>
+</div>
+<div class="h-48 flex items-end gap-1.5 px-2">
+<!-- Simulated Bar Chart -->
+<div class="flex-1 bg-surface-container-highest rounded-t-sm h-[30%] opacity-40"></div>
+<div class="flex-1 bg-surface-container-highest rounded-t-sm h-[45%] opacity-40"></div>
+<div class="flex-1 bg-primary-container rounded-t-sm h-[60%] shadow-[0_0_10px_rgba(0,229,255,0.2)]"></div>
+<div class="flex-1 bg-primary-container rounded-t-sm h-[85%] shadow-[0_0_10px_rgba(0,229,255,0.2)]"></div>
+<div class="flex-1 bg-primary-container rounded-t-sm h-[95%] shadow-[0_0_10px_rgba(0,229,255,0.2)]"></div>
+<div class="flex-1 bg-surface-container-highest rounded-t-sm h-[70%] opacity-40"></div>
+<div class="flex-1 bg-surface-container-highest rounded-t-sm h-[50%] opacity-40"></div>
+<div class="flex-1 bg-secondary rounded-t-sm h-[40%] shadow-[0_0_10px_rgba(64,229,108,0.2)]"></div>
+<div class="flex-1 bg-secondary rounded-t-sm h-[55%] shadow-[0_0_10px_rgba(64,229,108,0.2)]"></div>
+<div class="flex-1 bg-secondary rounded-t-sm h-[35%] shadow-[0_0_10px_rgba(64,229,108,0.2)]"></div>
+<div class="flex-1 bg-surface-container-highest rounded-t-sm h-[20%] opacity-40"></div>
+<div class="flex-1 bg-surface-container-highest rounded-t-sm h-[15%] opacity-40"></div>
+<div class="flex-1 bg-primary-container rounded-t-sm h-[45%] shadow-[0_0_10px_rgba(0,229,255,0.2)]"></div>
+<div class="flex-1 bg-primary-container rounded-t-sm h-[65%] shadow-[0_0_10px_rgba(0,229,255,0.2)]"></div>
+<div class="flex-1 bg-surface-container-highest rounded-t-sm h-[40%] opacity-40"></div>
+<div class="flex-1 bg-surface-container-highest rounded-t-sm h-[25%] opacity-40"></div>
+<div class="flex-1 bg-surface-container-highest rounded-t-sm h-[15%] opacity-40"></div>
+</div>
+<div class="flex justify-between mt-4 px-2 text-[10px] font-bold text-outline uppercase tracking-tighter">
+<span>00:00</span>
+<span>04:00</span>
+<span>08:00</span>
+<span>12:00</span>
+<span>16:00</span>
+<span>20:00</span>
+<span>23:59</span>
+</div>
+</div>
+</div>
+<!-- Incident Audit Log Table -->
+<div class="col-span-12 bg-surface-container rounded-xl overflow-hidden">
+<div class="p-6 border-b border-outline-variant/10 flex items-center justify-between">
+<div>
+<h3 class="text-sm font-bold text-on-surface uppercase tracking-widest">Incident Audit Log</h3>
+<p class="text-xs text-outline">Verified network events and service disruptions</p>
+</div>
+<button class="text-xs font-bold text-primary-container uppercase tracking-widest flex items-center gap-1 hover:underline">
+                        View Full History <span class="material-symbols-outlined text-sm">open_in_new</span>
+</button>
+</div>
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low/50">
+<th class="px-6 py-4 text-[10px] font-black text-outline uppercase tracking-widest">Event ID</th>
+<th class="px-6 py-4 text-[10px] font-black text-outline uppercase tracking-widest">Timestamp</th>
+<th class="px-6 py-4 text-[10px] font-black text-outline uppercase tracking-widest">Category</th>
+<th class="px-6 py-4 text-[10px] font-black text-outline uppercase tracking-widest">Node Impact</th>
+<th class="px-6 py-4 text-[10px] font-black text-outline uppercase tracking-widest">Duration</th>
+<th class="px-6 py-4 text-[10px] font-black text-outline uppercase tracking-widest">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10 text-xs">
+<tr class="hover:bg-surface-container-highest/30 transition-colors">
+<td class="px-6 py-4 font-mono text-on-surface">#EV-20934</td>
+<td class="px-6 py-4 text-on-surface-variant">2023-10-24 14:22:01</td>
+<td class="px-6 py-4">
+<span class="px-2 py-0.5 rounded-sm bg-surface-container-highest text-primary-container text-[10px] font-bold uppercase tracking-wider">Planned Maintenance</span>
+</td>
+<td class="px-6 py-4 text-on-surface-variant">Shanghai-RE-01</td>
+<td class="px-6 py-4 text-on-surface-variant">04:12 min</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-1.5 h-1.5 rounded-full bg-secondary glow-secondary"></div>
+<span class="text-secondary font-bold uppercase text-[10px]">Resolved</span>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-highest/30 transition-colors">
+<td class="px-6 py-4 font-mono text-on-surface">#EV-20812</td>
+<td class="px-6 py-4 text-on-surface-variant">2023-10-18 03:00:15</td>
+<td class="px-6 py-4">
+<span class="px-2 py-0.5 rounded-sm bg-surface-container-highest text-tertiary-fixed-dim text-[10px] font-bold uppercase tracking-wider">ISP Fault</span>
+</td>
+<td class="px-6 py-4 text-on-surface-variant">Guangzhou-CN-04</td>
+<td class="px-6 py-4 text-on-surface-variant">02:30 min</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-1.5 h-1.5 rounded-full bg-secondary glow-secondary"></div>
+<span class="text-secondary font-bold uppercase text-[10px]">Resolved</span>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-highest/30 transition-colors">
+<td class="px-6 py-4 font-mono text-on-surface">#EV-20755</td>
+<td class="px-6 py-4 text-on-surface-variant">2023-10-12 11:45:30</td>
+<td class="px-6 py-4">
+<span class="px-2 py-0.5 rounded-sm bg-surface-container-highest text-on-surface-variant text-[10px] font-bold uppercase tracking-wider">Power Loss</span>
+</td>
+<td class="px-6 py-4 text-on-surface-variant">Beijing-HO-01</td>
+<td class="px-6 py-4 text-on-surface-variant">02:00 min</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-1.5 h-1.5 rounded-full bg-secondary glow-secondary"></div>
+<span class="text-secondary font-bold uppercase text-[10px]">Resolved</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Data Conclusion Footer -->
+<footer class="mt-12 flex flex-col md:flex-row gap-8 items-start md:items-center justify-between p-8 bg-surface-container-low rounded-xl border border-outline-variant/10">
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-secondary">verified_user</span>
+<h3 class="text-sm font-bold text-on-surface uppercase tracking-widest">Monthly Quality Conclusion</h3>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed max-w-2xl">
+                    Chanel China network performance for October remains exceptional. All critical metrics (Uptime, Latency, Packet Consistency) have met or exceeded SLA thresholds. The move to CTG-powered backbone routing has resulted in a 14% improvement in average jitter across Tier-1 retail nodes.
+                </p>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-4 px-4 py-3 bg-surface-container rounded-lg">
+<div class="text-right">
+<p class="text-[10px] font-bold text-outline uppercase mb-0.5">Report Signature</p>
+<p class="text-xs font-semibold text-on-surface">CTG Sentinel Engine</p>
+</div>
+<div class="w-10 h-10 bg-primary-container/10 flex items-center justify-center rounded border border-primary-container/20">
+<span class="material-symbols-outlined text-primary-container">qr_code_2</span>
+</div>
+</div>
+<p class="text-[10px] text-outline text-right italic font-medium uppercase tracking-widest">Encrypted &amp; Immutable Audit Trail</p>
+</div>
+</footer>
+</main>
+<!-- Map Element (Decorative Context) -->
+<div class="hidden lg:block fixed bottom-8 right-8 w-48 h-48 rounded-full border-2 border-outline-variant/20 overflow-hidden pointer-events-none opacity-40 saturate-0 grayscale transition-opacity hover:opacity-100">
+<img alt="Map View" class="w-full h-full object-cover" data-alt="abstract satellite view of city lights across east asia at night with glowing network connections" data-location="China" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDs-bFIdynG_sz4b65uhZnpYkFxazrpq5Ef0Pm3ZL0YqsrTe5Vzv419bDirUMWZilpKxa722VLzF-U1RBkTlCXnHv5FIrVLl8XBHeqi0DXzlSQxEfuuNVcIEGpzHtczQo8D_bpQDVz-q1FXQWh0_RNrxz4Ilqxvri1G0W4GTgBOcT_IPTFBmHRolXj6aBmEQwl7YarLSo4v1vcmNZY7sMAno9ALWKSZKsN6rF76_jS_ECGHfyodhSkt6fDmdVzHqMMrN9ysIMeu1Zua"/>
+</div>
+</body></html>
