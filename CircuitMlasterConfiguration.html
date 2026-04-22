@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Circuit Master Configuration | SENTINEL_INTERFACE</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #10141a;
+            color: #dfe2eb;
+        }
+        .font-headline { font-family: 'Space Grotesk', sans-serif; }
+        .font-mono-tech { font-family: 'JetBrains Mono', monospace; }
+        
+        /* Custom Scrollbar for NOC density */
+        ::-webkit-scrollbar { width: 4px; height: 4px; }
+        ::-webkit-scrollbar-track { background: #10141a; }
+        ::-webkit-scrollbar-thumb { background: #31353c; border-radius: 2px; }
+        ::-webkit-scrollbar-thumb:hover { background: #00E5FF; }
+
+        .glass-panel {
+            background: rgba(49, 53, 60, 0.6);
+            backdrop-filter: blur(12px);
+            background-image: linear-gradient(to bottom right, rgba(0, 229, 255, 0.05), transparent);
+        }
+        
+        .status-glow-success { box-shadow: 0 0 8px 2px rgba(64, 229, 108, 0.4); }
+        .status-glow-critical { box-shadow: 0 0 8px 2px rgba(182, 0, 0, 0.4); }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-high": "#262a31",
+                      "on-tertiary": "#690000",
+                      "surface-tint": "#00daf3",
+                      "primary": "#c3f5ff",
+                      "on-secondary": "#003912",
+                      "surface-variant": "#31353c",
+                      "secondary-container": "#02c953",
+                      "on-surface": "#dfe2eb",
+                      "on-surface-variant": "#bac9cc",
+                      "surface": "#10141a",
+                      "tertiary-container": "#ffc2b8",
+                      "surface-container": "#1c2026",
+                      "error-container": "#93000a",
+                      "outline-variant": "#3b494c",
+                      "primary-container": "#00e5ff",
+                      "on-tertiary-container": "#b60000",
+                      "secondary": "#40e56c",
+                      "surface-container-highest": "#31353c",
+                      "surface-container-low": "#181c22",
+                      "on-background": "#dfe2eb",
+                      "background": "#10141a",
+                      "on-primary": "#00363d",
+                      "on-primary-container": "#00626e",
+                      "tertiary": "#ffe8e4",
+                      "surface-bright": "#353940",
+                      "surface-container-lowest": "#0a0e14"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              }
+            },
+          }
+        }
+    </script>
+</head>
+<body class="flex overflow-hidden h-screen">
+<!-- SideNavBar (JSON Derived) -->
+<aside class="bg-[#181c22] h-screen w-72 fixed left-0 top-0 flex flex-col shadow-2xl z-40 border-r border-outline-variant/10">
+<div class="px-6 py-8 flex flex-col items-center gap-2 border-b border-outline-variant/10">
+<div class="w-12 h-12 bg-surface-container rounded-lg flex items-center justify-center border border-primary-container/20">
+<span class="material-symbols-outlined text-primary-container" style="font-variation-settings: 'FILL' 1;">terminal</span>
+</div>
+<div class="text-center">
+<h2 class="text-[#00E5FF] font-black font-headline tracking-widest text-lg">NODE_SENTINEL</h2>
+<p class="text-[#919194] text-[10px] uppercase tracking-tighter">NOC_OPERATOR_01</p>
+</div>
+</div>
+<nav class="flex flex-col space-y-1 py-6 overflow-y-auto flex-grow">
+<!-- Circuit Matrix (Active Based on Intent) -->
+<a class="bg-[#1c2026] text-[#00E5FF] border-l-4 border-[#00E5FF] pl-4 py-4 w-full flex items-center gap-3 font-headline text-sm uppercase tracking-wider hover:bg-[#31353c] transition-all" href="#">
+<span class="material-symbols-outlined">hub</span>
+<span>Circuit Matrix</span>
+</a>
+<a class="text-[#919194] pl-5 py-4 w-full flex items-center gap-3 font-headline text-sm uppercase tracking-wider hover:bg-[#31353c] hover:text-white transition-all duration-300 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">map</span>
+<span>Live Topology</span>
+</a>
+<a class="text-[#919194] pl-5 py-4 w-full flex items-center gap-3 font-headline text-sm uppercase tracking-wider hover:bg-[#31353c] hover:text-white transition-all duration-300 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">monitoring</span>
+<span>Signal Monitor</span>
+</a>
+<a class="text-[#919194] pl-5 py-4 w-full flex items-center gap-3 font-headline text-sm uppercase tracking-wider hover:bg-[#31353c] hover:text-white transition-all duration-300 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">terminal</span>
+<span>Routing Tables</span>
+</a>
+<a class="text-[#919194] pl-5 py-4 w-full flex items-center gap-3 font-headline text-sm uppercase tracking-wider hover:bg-[#31353c] hover:text-white transition-all duration-300 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">history</span>
+<span>Audit Logs</span>
+</a>
+</nav>
+<div class="mt-auto border-t border-outline-variant/10 p-4 space-y-4">
+<button class="w-full bg-primary-container text-on-primary-container font-black py-3 text-xs tracking-widest rounded-sm active:scale-95 transition-transform">
+                NEW_CIRCUIT
+            </button>
+<div class="space-y-2">
+<a class="flex items-center gap-3 text-[#919194] text-xs uppercase tracking-widest px-2 hover:text-primary-container transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">analytics</span>
+<span>System Health</span>
+</a>
+<a class="flex items-center gap-3 text-[#919194] text-xs uppercase tracking-widest px-2 hover:text-primary-container transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">menu_book</span>
+<span>Manuals</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content Wrapper -->
+<main class="flex-grow ml-72 flex flex-col relative h-full overflow-hidden">
+<!-- TopAppBar (JSON Derived) -->
+<header class="bg-[#10141a]/90 backdrop-blur-xl text-[#00E5FF] font-['Space_Grotesk'] tracking-tight flex items-center justify-between px-8 py-4 w-full sticky top-0 z-50 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
+<div class="flex items-center gap-6">
+<h1 class="text-2xl font-black tracking-widest">SENTINEL_INTERFACE</h1>
+<div class="h-6 w-[1px] bg-outline-variant/30"></div>
+<div class="flex flex-col">
+<span class="text-[10px] text-[#919194] font-bold uppercase tracking-widest">Editor_Mode</span>
+<span class="text-sm font-mono-tech font-medium">CONFIG_ID: HKG-8821-X9</span>
+</div>
+</div>
+<div class="flex items-center gap-8">
+<div class="hidden lg:flex items-center bg-surface-container-high/50 border border-outline-variant/20 px-3 py-1.5 rounded gap-3">
+<span class="material-symbols-outlined text-sm text-[#919194]">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-xs w-48 text-on-surface" placeholder="Jump to Node..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-xs font-bold text-[#919194] uppercase tracking-widest">Tenant: GLOBAL_ISP_BACKBONE</span>
+<div class="flex items-center gap-3">
+<button class="material-symbols-outlined hover:bg-[#31353c] p-2 rounded transition-colors text-xl">notifications_active</button>
+<button class="material-symbols-outlined hover:bg-[#31353c] p-2 rounded transition-colors text-xl">settings_input_component</button>
+<button class="material-symbols-outlined hover:bg-[#31353c] p-2 rounded transition-colors text-xl">terminal</button>
+</div>
+<div class="w-8 h-8 rounded-full border border-primary-container/30 overflow-hidden">
+<img alt="Avatar" class="w-full h-full object-cover" data-alt="close-up portrait of a tech professional in a low-light cybernetic room with soft blue screen reflections on their face" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmm9kFPCxVN7D5bSZo5rIDwztSXogy4xOLnaFRIrna-aEqyyH51nmxwKai54Z_hEltGJpaks6MZwfLNVBIOTT3Iw09kdNxQDnxgaemjjWFfCHXvcGUx5azQHarmHJL3KHG4IKQHRP9AIlbS9VKpazmcsDF9OMKKU6AYeR7jwobK-4qhZfHiR5ir8YrfocQ8wiF_BA_XY4fWv4jgtJ740GPxHVtsh7eYJSuvJIhwpfI5ZaobR4Ly64UMHaPfJ1Ii3WnMFNrcUHYDuQb"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Config Grid Canvas -->
+<div class="flex-grow overflow-y-auto p-8 space-y-8 bg-surface-container-lowest">
+<!-- Header Identity Section -->
+<div class="flex justify-between items-end">
+<div>
+<h2 class="text-4xl font-headline font-bold text-on-surface tracking-tighter">Circuit Master Configuration</h2>
+<p class="text-on-surface-variant mt-1 text-sm">Orchestrating cross-border neural connectivity for Horasis Platform.</p>
+</div>
+<div class="flex gap-3">
+<button class="px-6 py-2 border border-outline-variant text-xs font-bold uppercase tracking-widest hover:bg-surface-variant transition-colors">Discard Changes</button>
+<button class="px-6 py-2 bg-primary-container text-on-primary-container text-xs font-black uppercase tracking-widest active:scale-95 transition-transform shadow-[0_0_15px_rgba(0,229,255,0.3)]">Deploy Matrix</button>
+</div>
+</div>
+<!-- Bento Grid Modules -->
+<div class="grid grid-cols-12 gap-6 pb-20">
+<!-- 1. Basic Identity Card -->
+<section class="col-span-12 lg:col-span-5 bg-surface-container p-6 rounded-md shadow-lg border-l-2 border-primary-container/40">
+<div class="flex justify-between items-start mb-6">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-container">fingerprint</span>
+<h3 class="font-headline font-bold uppercase tracking-widest text-sm text-primary-container">Basic Identity</h3>
+</div>
+<span class="px-2 py-0.5 bg-secondary/10 border border-secondary text-secondary text-[10px] font-bold rounded status-glow-success">PROVISIONED</span>
+</div>
+<div class="grid grid-cols-2 gap-y-6 gap-x-8">
+<div>
+<label class="text-[10px] uppercase font-bold tracking-[0.2em] text-on-surface-variant block mb-2">Circuit ID</label>
+<input class="w-full bg-surface-container-highest border-none font-mono-tech text-sm py-2 px-3 text-primary focus:ring-1 focus:ring-primary-container/40 transition-all" type="text" value="H-DIA-HKG-0082"/>
+</div>
+<div>
+<label class="text-[10px] uppercase font-bold tracking-[0.2em] text-on-surface-variant block mb-2">Carrier</label>
+<select class="w-full bg-surface-container-highest border-none font-mono-tech text-sm py-2 px-3 text-on-surface focus:ring-1 focus:ring-primary-container/40">
+<option>CTG</option>
+<option selected="">CMI</option>
+<option>Singtel</option>
+</select>
+</div>
+<div>
+<label class="text-[10px] uppercase font-bold tracking-[0.2em] text-on-surface-variant block mb-2">Circuit Type</label>
+<select class="w-full bg-surface-container-highest border-none font-mono-tech text-sm py-2 px-3 text-on-surface focus:ring-1 focus:ring-primary-container/40">
+<option selected="">DIA (Direct Internet)</option>
+<option>MPLS (Private Line)</option>
+</select>
+</div>
+<div>
+<label class="text-[10px] uppercase font-bold tracking-[0.2em] text-on-surface-variant block mb-2">Alias</label>
+<input class="w-full bg-surface-container-highest border-none font-mono-tech text-sm py-2 px-3 text-on-surface" placeholder="Global HQ Backbone" type="text"/>
+</div>
+<div class="col-span-2">
+<div class="flex justify-between items-center mb-2">
+<label class="text-[10px] uppercase font-bold tracking-[0.2em] text-on-surface-variant block">Bandwidth (Up/Down)</label>
+<span class="text-primary-container font-mono-tech text-xs">1000 / 1000 Mbps</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-lowest rounded-full overflow-hidden">
+<div class="h-full bg-primary-container w-2/3 shadow-[0_0_8px_#00e5ff]"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- 2. Physical Topology Card -->
+<section class="col-span-12 lg:col-span-7 bg-surface-container p-6 rounded-md shadow-lg">
+<div class="flex justify-between items-start mb-6">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-container">account_tree</span>
+<h3 class="font-headline font-bold uppercase tracking-widest text-sm text-primary-container">Physical Topology</h3>
+</div>
+<a class="text-[10px] font-bold text-primary-container underline hover:text-white transition-colors" href="#">GO TO SITES MODULE</a>
+</div>
+<div class="grid grid-cols-2 gap-6">
+<div class="p-4 bg-surface-container-low border border-outline-variant/10 rounded">
+<h4 class="text-[10px] uppercase font-bold tracking-widest text-primary-container mb-3 flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span> A-END ORIGIN
+                            </h4>
+<div class="space-y-3">
+<div>
+<span class="text-[9px] uppercase text-on-surface-variant block">Physical Address</span>
+<p class="text-xs leading-relaxed">Equinix HK1, 108 Wai Yip St, Kwun Tong, Hong Kong</p>
+</div>
+<div>
+<span class="text-[9px] uppercase text-on-surface-variant block">Local Interface</span>
+<code class="text-xs font-mono-tech text-on-primary-container">GigabitEthernet0/1/1</code>
+</div>
+</div>
+</div>
+<div class="p-4 bg-surface-container-low border border-outline-variant/10 rounded">
+<h4 class="text-[10px] uppercase font-bold tracking-widest text-secondary mb-3 flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Z-END DESTINATION
+                            </h4>
+<div class="space-y-3">
+<div>
+<span class="text-[9px] uppercase text-on-surface-variant block">Physical Address</span>
+<p class="text-xs leading-relaxed">Global Switch SG1, 2 Tai Seng Ave, Singapore</p>
+</div>
+<div>
+<span class="text-[9px] uppercase text-on-surface-variant block">CPE IP Address</span>
+<code class="text-xs font-mono-tech text-secondary">172.16.254.12</code>
+</div>
+</div>
+</div>
+<div class="col-span-2 grid grid-cols-3 gap-4">
+<div>
+<label class="text-[10px] uppercase font-bold tracking-[0.2em] text-on-surface-variant block mb-2">Handoff Type</label>
+<div class="flex gap-2">
+<button class="flex-grow bg-surface-container-highest py-2 text-[10px] font-bold border border-primary-container text-primary-container">FIBER (LC)</button>
+<button class="flex-grow bg-surface-container-low py-2 text-[10px] font-bold border border-outline-variant text-on-surface-variant">RJ45</button>
+</div>
+</div>
+<div class="col-span-2">
+<label class="text-[10px] uppercase font-bold tracking-[0.2em] text-on-surface-variant block mb-2">Site Connectivity Map</label>
+<div class="h-10 bg-surface-container-lowest rounded flex items-center justify-center border border-outline-variant/10 overflow-hidden group">
+<div class="w-full h-full bg-cover bg-center opacity-40 group-hover:opacity-60 transition-opacity" data-alt="stylized vector world map with neon connectivity lines and glowing nodes against a dark background" data-location="Hong Kong" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA982DZ3OJ4bg_vw-2lTUh3wWwj_ZRQXco8QEAIgGZbu-YmW7UjRu2TK3RtjOfG2nbqhvcI7QFST9NbM-fgw4H43HXIYOcwS1QHKogNftCC1iEEbFxH73gEq2a6SEWAxys3amTd32BJws3gVqxxlDkFcayXA5WMEDvw7QPXIxcpJ5fJtwSy2e6aGa6IjdIg5q4BSQqLktMCeinvVamuWA3Hh19968fH2iEzE-a0poz2qvRfmR1-zi7Ok5FgZKfN850SAhFW0aU4jhZw')"></div>
+<span class="absolute text-[10px] font-bold text-primary-container tracking-widest">HKG -&gt; SIN_BACKPLANE</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. Network Logic Card -->
+<section class="col-span-12 lg:col-span-7 bg-surface-container p-6 rounded-md shadow-lg border-b border-primary-container/10">
+<div class="flex justify-between items-start mb-6">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-container">dns</span>
+<h3 class="font-headline font-bold uppercase tracking-widest text-sm text-primary-container">Network Logic</h3>
+</div>
+</div>
+<div class="grid grid-cols-12 gap-8">
+<div class="col-span-7 space-y-5">
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="text-[10px] uppercase font-bold tracking-[0.2em] text-on-surface-variant block mb-2">WAN IP (Public)</label>
+<input class="w-full bg-surface-container-lowest border-none font-mono-tech text-xs py-2.5 px-3 text-secondary" type="text" value="203.0.113.45/30"/>
+</div>
+<div>
+<label class="text-[10px] uppercase font-bold tracking-[0.2em] text-on-surface-variant block mb-2">Gateway PE IP</label>
+<input class="w-full bg-surface-container-lowest border-none font-mono-tech text-xs py-2.5 px-3 text-on-surface" type="text" value="203.0.113.46"/>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="text-[10px] uppercase font-bold tracking-[0.2em] text-on-surface-variant block mb-2">VLAN ID</label>
+<input class="w-full bg-surface-container-lowest border-none font-mono-tech text-xs py-2.5 px-3 text-on-surface" type="text" value="1004"/>
+</div>
+<div>
+<label class="text-[10px] uppercase font-bold tracking-[0.2em] text-on-surface-variant block mb-2">Routing Protocol</label>
+<select class="w-full bg-surface-container-lowest border-none font-mono-tech text-xs py-2.5 px-3 text-primary-container">
+<option selected="">BGP (ASN 65001)</option>
+<option>OSPF</option>
+<option>Static</option>
+</select>
+</div>
+</div>
+</div>
+<div class="col-span-5">
+<label class="text-[10px] uppercase font-bold tracking-[0.2em] text-on-surface-variant block mb-3">IP Subnet Preview</label>
+<div class="p-3 bg-surface-container-lowest border border-outline-variant/10 rounded">
+<div class="grid grid-cols-4 gap-2 mb-3">
+<div class="h-6 bg-primary-container/20 border border-primary-container rounded-sm flex items-center justify-center text-[8px] font-mono-tech">.0</div>
+<div class="h-6 bg-primary-container border border-primary-container rounded-sm flex items-center justify-center text-[8px] font-mono-tech text-on-primary-container">.1</div>
+<div class="h-6 bg-primary-container/20 border border-primary-container rounded-sm flex items-center justify-center text-[8px] font-mono-tech">.2</div>
+<div class="h-6 bg-outline-variant/20 border border-outline-variant/40 rounded-sm flex items-center justify-center text-[8px] font-mono-tech text-on-surface-variant">.3</div>
+<div class="h-6 bg-outline-variant/20 border border-outline-variant/40 rounded-sm flex items-center justify-center text-[8px] font-mono-tech text-on-surface-variant">.4</div>
+<div class="h-6 bg-outline-variant/20 border border-outline-variant/40 rounded-sm flex items-center justify-center text-[8px] font-mono-tech text-on-surface-variant">.5</div>
+<div class="h-6 bg-outline-variant/20 border border-outline-variant/40 rounded-sm flex items-center justify-center text-[8px] font-mono-tech text-on-surface-variant">.6</div>
+<div class="h-6 bg-outline-variant/20 border border-outline-variant/40 rounded-sm flex items-center justify-center text-[8px] font-mono-tech text-on-surface-variant">.7</div>
+</div>
+<div class="flex justify-between text-[9px] uppercase tracking-tighter text-on-surface-variant font-medium">
+<span>Allocated: 2 IPs</span>
+<span class="text-primary-container">CIDR: /29 Chunk</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. Support & Operations Card -->
+<section class="col-span-12 lg:col-span-5 bg-surface-container p-6 rounded-md shadow-lg flex flex-col">
+<div class="flex justify-between items-start mb-6">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-container">support_agent</span>
+<h3 class="font-headline font-bold uppercase tracking-widest text-sm text-primary-container">Support &amp; Ops</h3>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-[9px] font-bold text-on-surface-variant uppercase tracking-widest">Monitor</span>
+<div class="w-8 h-4 bg-primary-container rounded-full relative cursor-pointer shadow-[0_0_8px_rgba(0,229,255,0.4)]">
+<div class="absolute right-0.5 top-0.5 w-3 h-3 bg-on-primary-container rounded-full"></div>
+</div>
+</div>
+</div>
+<div class="space-y-6 flex-grow">
+<div class="flex gap-4">
+<div class="flex-1">
+<label class="text-[10px] uppercase font-bold tracking-[0.2em] text-on-surface-variant block mb-2">Circuit Role</label>
+<div class="flex rounded-sm overflow-hidden border border-outline-variant">
+<button class="flex-1 text-[9px] font-black py-2 bg-primary-container text-on-primary-container">PRIMARY</button>
+<button class="flex-1 text-[9px] font-black py-2 text-on-surface-variant hover:bg-surface-variant transition-colors">BACKUP</button>
+</div>
+</div>
+<div class="flex-1">
+<label class="text-[10px] uppercase font-bold tracking-[0.2em] text-on-surface-variant block mb-2">Expiry Date</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute right-3 top-2 text-xs text-on-surface-variant">calendar_month</span>
+<input class="w-full bg-surface-container-lowest border-none font-mono-tech text-xs py-2 px-3 text-on-surface" type="text" value="2025-12-31"/>
+</div>
+</div>
+</div>
+<div>
+<div class="flex justify-between items-center mb-2">
+<label class="text-[10px] uppercase font-bold tracking-[0.2em] text-on-surface-variant">Threshold Alarm (Sky Blue)</label>
+<span class="text-xs font-mono-tech text-primary-container font-bold">85%</span>
+</div>
+<input class="w-full h-1.5 bg-surface-container-lowest rounded-lg appearance-none cursor-pointer accent-primary-container" type="range"/>
+</div>
+<div class="p-4 bg-surface-container-highest/40 rounded space-y-3">
+<div class="flex items-center justify-between">
+<span class="text-[10px] font-bold text-on-surface-variant uppercase">Account Manager</span>
+<span class="text-xs font-medium">David Chen (CMI)</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-[10px] font-bold text-on-surface-variant uppercase">NOC Hotline</span>
+<span class="text-xs font-mono-tech text-secondary">+852 2121 8888</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+<!-- Floating Action Notification -->
+<div class="absolute bottom-6 right-8 glass-panel border border-primary-container/20 rounded px-4 py-3 flex items-center gap-4 shadow-2xl animate-pulse">
+<div class="w-2 h-2 rounded-full bg-secondary status-glow-success"></div>
+<div class="text-xs">
+<span class="text-on-surface-variant block uppercase text-[9px] font-black tracking-widest">System Signal</span>
+<span class="text-primary-container font-medium">Auto-syncing configuration with PE Router...</span>
+</div>
+</div>
+</main>
+</body></html>
