@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sentinel NOC - User Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(49, 53, 60, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 229, 255, 0.1);
+        }
+        .glow-success { box-shadow: 0 0 8px 2px rgba(64, 229, 108, 0.4); }
+        .glow-critical { box-shadow: 0 0 8px 2px rgba(182, 0, 0, 0.4); }
+        .glow-warning { box-shadow: 0 0 8px 2px rgba(255, 194, 184, 0.4); }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface": "#dfe2eb",
+                        "on-secondary-fixed-variant": "#00531e",
+                        "surface-container-lowest": "#0a0e14",
+                        "secondary-container": "#02c953",
+                        "tertiary-fixed-dim": "#ffb4a8",
+                        "primary-fixed-dim": "#00daf3",
+                        "outline": "#849396",
+                        "on-secondary-fixed": "#002108",
+                        "on-secondary-container": "#004d1b",
+                        "on-primary-fixed": "#001f24",
+                        "on-tertiary-fixed-variant": "#930000",
+                        "tertiary-fixed": "#ffdad4",
+                        "secondary-fixed": "#69ff87",
+                        "on-primary-fixed-variant": "#004f58",
+                        "on-error-container": "#ffdad6",
+                        "tertiary": "#ffe8e4",
+                        "tertiary-container": "#ffc2b8",
+                        "surface-container-low": "#181c22",
+                        "background": "#10141a",
+                        "surface-bright": "#353940",
+                        "error-container": "#93000a",
+                        "on-tertiary-container": "#b60000",
+                        "surface-container-highest": "#31353c",
+                        "on-error": "#690005",
+                        "inverse-surface": "#dfe2eb",
+                        "on-tertiary-fixed": "#410000",
+                        "surface": "#10141a",
+                        "surface-container-high": "#262a31",
+                        "on-surface-variant": "#bac9cc",
+                        "on-secondary": "#003912",
+                        "primary": "#c3f5ff",
+                        "inverse-on-surface": "#2d3137",
+                        "on-primary-container": "#00626e",
+                        "surface-dim": "#10141a",
+                        "on-tertiary": "#690000",
+                        "surface-variant": "#31353c",
+                        "on-primary": "#00363d",
+                        "outline-variant": "#3b494c",
+                        "inverse-primary": "#006875",
+                        "primary-fixed": "#9cf0ff",
+                        "on-background": "#dfe2eb",
+                        "secondary-fixed-dim": "#3ce36a",
+                        "surface-tint": "#00daf3",
+                        "secondary": "#40e56c",
+                        "error": "#ffb4ab",
+                        "surface-container": "#1c2026",
+                        "primary-container": "#00e5ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "display": ["Space Grotesk"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container overflow-hidden h-screen flex">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full w-64 z-40 bg-[#181c22] flex flex-col pt-20 pb-6">
+<div class="px-6 mb-8">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-surface-container-highest rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-primary-container" style="font-variation-settings: 'FILL' 1;">shield</span>
+</div>
+<div>
+<h2 class="text-primary-container font-black uppercase tracking-wider text-xs font-headline">System Admin</h2>
+<p class="text-slate-500 text-[10px] uppercase tracking-widest font-body">Network Root</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 text-slate-400 px-4 py-3 hover:bg-[#31353c] hover:text-[#00E5FF] transition-all font-['Inter'] text-sm uppercase tracking-wider active:translate-x-1 duration-150" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 text-slate-400 px-4 py-3 hover:bg-[#31353c] hover:text-[#00E5FF] transition-all font-['Inter'] text-sm uppercase tracking-wider active:translate-x-1 duration-150" href="#">
+<span class="material-symbols-outlined">corporate_fare</span>
+<span>Tenants</span>
+</a>
+<a class="flex items-center gap-3 bg-[#1c2026] text-[#00E5FF] border-r-4 border-[#00E5FF] px-4 py-3 font-['Inter'] text-sm uppercase tracking-wider active:translate-x-1 duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">group</span>
+<span>Members</span>
+</a>
+<a class="flex items-center gap-3 text-slate-400 px-4 py-3 hover:bg-[#31353c] hover:text-[#00E5FF] transition-all font-['Inter'] text-sm uppercase tracking-wider active:translate-x-1 duration-150" href="#">
+<span class="material-symbols-outlined">security</span>
+<span>Roles</span>
+</a>
+<a class="flex items-center gap-3 text-slate-400 px-4 py-3 hover:bg-[#31353c] hover:text-[#00E5FF] transition-all font-['Inter'] text-sm uppercase tracking-wider active:translate-x-1 duration-150" href="#">
+<span class="material-symbols-outlined">terminal</span>
+<span>Logs</span>
+</a>
+</nav>
+<div class="px-4 mt-auto space-y-4">
+<button class="w-full bg-primary-container text-on-primary-container py-3 rounded-lg font-bold text-xs tracking-widest uppercase flex items-center justify-center gap-2 active:scale-95 duration-150">
+<span class="material-symbols-outlined text-sm">person_add</span>
+                Add Member
+            </button>
+<div class="pt-4 border-t border-outline-variant/20 space-y-1">
+<a class="flex items-center gap-3 text-slate-400 px-4 py-2 hover:text-[#00E5FF] text-xs uppercase tracking-widest font-['Inter'] transition-colors" href="#">
+<span class="material-symbols-outlined text-lg">help</span>
+                    Support
+                </a>
+<a class="flex items-center gap-3 text-slate-400 px-4 py-2 hover:text-on-tertiary-container text-xs uppercase tracking-widest font-['Inter'] transition-colors" href="#">
+<span class="material-symbols-outlined text-lg">logout</span>
+                    Sign Out
+                </a>
+</div>
+</div>
+</aside>
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-[#10141a] h-16 flex justify-between items-center px-6 shadow-[0_0_8px_2px_rgba(0,229,255,0.08)]">
+<div class="flex items-center gap-8 ml-64">
+<span class="text-xl font-bold text-[#00E5FF] tracking-widest font-['Space_Grotesk']">Sentinel NOC</span>
+<div class="flex items-center gap-2 bg-[#181c22] px-3 py-1.5 rounded-lg border border-outline-variant/10">
+<span class="material-symbols-outlined text-slate-500 text-sm">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm text-on-surface w-64 placeholder:text-slate-600" placeholder="Search system entities..." type="text"/>
+</div>
+<div class="flex items-center gap-3 ml-4">
+<span class="text-[10px] uppercase font-bold text-slate-500 tracking-tighter">Tenant View:</span>
+<select class="bg-[#1c2026] text-[#00E5FF] border-none text-xs font-bold font-display tracking-tight rounded px-4 py-1.5 focus:ring-1 focus:ring-primary-container/30 cursor-pointer">
+<option>Global (CTG)</option>
+<option>Chanel China</option>
+<option>Tencent Cloud</option>
+</select>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-400 hover:bg-[#31353c] rounded transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+<button class="p-2 text-slate-400 hover:bg-[#31353c] rounded transition-colors relative active:scale-95 duration-200">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-on-tertiary-container rounded-full glow-critical"></span>
+</button>
+<button class="p-2 text-slate-400 hover:bg-[#31353c] rounded transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-primary-container/20 ml-2">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="close-up portrait of a professional male network architect in a dark tech-focused environment with subtle cyan light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOaUGNrtKu5hz0mkibkVh9Ge_pjBTUZtSG58DV94W1W1eDZlVqRtgIKbcWIQffw7t7xq9_JJolGbN14X2YPKckqgQCQilcsV0fpF_evV2t7gzim4NLBgifnZdHAyQigoLn6ARzjReYnMGS8zXMcqlX_-2xVO127piP7m68NIgRQLYeSOvNSkZ7Bq8ZUJiwfZTOA1r4cRC8Ca1zKc3eq4VkhSYuGMbyV4tgF6JKLcOc1pHvsnDy2_Q4ldJi7gy6UgE8YEGJ0jEKSsIE"/>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 ml-64 pt-16 h-full overflow-y-auto">
+<div class="p-8 max-w-[1400px] mx-auto">
+<!-- Header Section -->
+<div class="flex justify-between items-end mb-8">
+<div>
+<h1 class="text-3xl font-display font-bold text-primary tracking-tight mb-1">Member Directory</h1>
+<p class="text-slate-400 text-sm">Managing 438 multi-tenant active users across nodes.</p>
+</div>
+<div class="flex gap-4">
+<div class="flex items-center gap-2 bg-surface-container-low px-4 py-2 rounded-lg border border-outline-variant/10">
+<span class="text-xs text-slate-500 font-medium">Quick Filter:</span>
+<div class="flex gap-1">
+<span class="px-2 py-0.5 bg-secondary-container/10 text-secondary text-[10px] font-bold rounded border border-secondary/20">Active (412)</span>
+<span class="px-2 py-0.5 bg-tertiary-container/10 text-tertiary-container text-[10px] font-bold rounded border border-tertiary-container/20">Pending (12)</span>
+</div>
+</div>
+<button class="bg-primary-container text-on-primary-container px-6 py-2.5 rounded font-display font-bold text-sm tracking-tight flex items-center gap-2 shadow-[0_0_12px_rgba(0,229,255,0.2)] active:scale-95 transition-all">
+<span class="material-symbols-outlined text-lg">mail</span>
+                        Invite Member
+                    </button>
+</div>
+</div>
+<!-- Bento Grid Content -->
+<div class="grid grid-cols-12 gap-6">
+<!-- Main Table Section -->
+<div class="col-span-12 bg-surface-container rounded-xl overflow-hidden border border-outline-variant/10">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-high/50 border-b border-outline-variant/10">
+<th class="px-6 py-4 text-[10px] font-bold text-slate-500 uppercase tracking-widest">Name</th>
+<th class="px-6 py-4 text-[10px] font-bold text-slate-500 uppercase tracking-widest">Role</th>
+<th class="px-6 py-4 text-[10px] font-bold text-slate-500 uppercase tracking-widest">Tenant</th>
+<th class="px-6 py-4 text-[10px] font-bold text-slate-500 uppercase tracking-widest">Status</th>
+<th class="px-6 py-4 text-[10px] font-bold text-slate-500 uppercase tracking-widest">Last Login</th>
+<th class="px-6 py-4 text-[10px] font-bold text-slate-500 uppercase tracking-widest text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/5">
+<!-- User Row 1 -->
+<tr class="hover:bg-surface-container-highest/30 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-surface-container-lowest border border-outline-variant/20 flex-shrink-0">
+<img class="w-full h-full object-cover rounded-full" data-alt="professional corporate headshot of a developer in a modern dark studio" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0TzAlXhmg7IokH8V6mXmzgt7rByS4zJtd7Qzm-vVzv34mscVGFUlq5TBVOv9-vYnKl6QavxmGM_mmqGTY-PLQ-ZEnYtsouilI_hE-YeBVyCyTwWGRG0wEs_JfYzVmPCjV3NtBE3OpTV-PNVeML0v7ny1J278HV0kL1OaUMMaa45y73ncxoCnI9jIiRZwH3no5_uvIo_pu4N1Q6Qo5f5oUTVH7Cs5QyImeI6Fmwvch8wY54Zqn8DO1GHudWKYuf3rR7fhVSvwOFeQG"/>
+</div>
+<div>
+<p class="text-sm font-semibold text-on-surface">Alex Chen</p>
+<p class="text-xs text-slate-500">alex.chen@horasis.io</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-1 bg-primary/10 text-primary-container text-[10px] font-bold rounded uppercase tracking-wider border border-primary/20">Super Admin</span>
+</td>
+<td class="px-6 py-4 text-xs text-slate-400 font-medium">Global (CTG)</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-1.5 h-1.5 rounded-full bg-secondary glow-success"></div>
+<span class="text-xs text-secondary font-medium">Active</span>
+</div>
+</td>
+<td class="px-6 py-4 text-xs text-slate-500">2 mins ago</td>
+<td class="px-6 py-4 text-right">
+<button class="text-slate-500 hover:text-primary-container transition-colors">
+<span class="material-symbols-outlined text-lg">edit</span>
+</button>
+</td>
+</tr>
+<!-- User Row 2 -->
+<tr class="hover:bg-surface-container-highest/30 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-surface-container-lowest border border-outline-variant/20 flex-shrink-0">
+<img class="w-full h-full object-cover rounded-full" data-alt="vibrant professional portrait of a woman in a high-tech office environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcUa-XhIJnYSMT1MfVxqm391adwvTUgc_QSloCFb8KboZTfdPZsvzOBtj6ImlUAUczuw4w0-h0lgF9Xlcr4jqpEYZh5_zi1Vxkk3P2oMc__RTYjvTMIhm6SqTvECOCrxtaK1fuM_uSKNWvVmyegDNMkXT1yUCh8R-T86EtMb2HZKitQLX7rjk8ghP20zp8BJN7o5IEimpOreKUO8e7z_KlZ5SSz2KCv-AdjjfdccHLtVL1W4D2bip7lTaX3_gxvYGTCLRnv0h4p2wS"/>
+</div>
+<div>
+<p class="text-sm font-semibold text-on-surface">Elena Rodriguez</p>
+<p class="text-xs text-slate-500">e.rodriguez@tencent.cn</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-1 bg-surface-container-highest text-slate-300 text-[10px] font-bold rounded uppercase tracking-wider border border-outline-variant/20">Network Engineer</span>
+</td>
+<td class="px-6 py-4 text-xs text-slate-400 font-medium">Tencent Cloud</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-1.5 h-1.5 rounded-full bg-tertiary-container glow-warning"></div>
+<span class="text-xs text-tertiary-container font-medium">Pending</span>
+</div>
+</td>
+<td class="px-6 py-4 text-xs text-slate-500">Never</td>
+<td class="px-6 py-4 text-right">
+<button class="text-slate-500 hover:text-primary-container transition-colors">
+<span class="material-symbols-outlined text-lg">edit</span>
+</button>
+</td>
+</tr>
+<!-- User Row 3 -->
+<tr class="hover:bg-surface-container-highest/30 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-surface-container-lowest border border-outline-variant/20 flex-shrink-0">
+<img class="w-full h-full object-cover rounded-full" data-alt="minimalist studio portrait of a cybersecurity auditor against a dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqzPl2So6uEHAGV3tWUjahaBMv4y8GYWP7MEiO1v3FyEt4wa7pPNUb7YQNpKhuo334OBMGsvf4DbakxYayHZxHUXInZv-cVROXFaSKk6zP7MNqRxurZYXtsciSwKQZDyHR3o0-FuO1TZmyxM-zFNOXLb7OyhNd00K6RmGlhTbtNAFDUR9C5xfwdTX2BvBOPIs0MwPk2WBMxzbgZ8pd_AZw44fazsjyVghGfmfQbrcB5vRcoG5fgeNCKI-rByIPwoY8b_5_4q3j2SaV"/>
+</div>
+<div>
+<p class="text-sm font-semibold text-on-surface">Marcus Thorne</p>
+<p class="text-xs text-slate-500">m.thorne@chanel.com</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-1 bg-outline-variant/20 text-slate-400 text-[10px] font-bold rounded uppercase tracking-wider border border-outline-variant/20">Auditor</span>
+</td>
+<td class="px-6 py-4 text-xs text-slate-400 font-medium">Chanel China</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-1.5 h-1.5 rounded-full bg-on-tertiary-container glow-critical"></div>
+<span class="text-xs text-on-tertiary-container font-medium">Disabled</span>
+</div>
+</td>
+<td class="px-6 py-4 text-xs text-slate-500">12 days ago</td>
+<td class="px-6 py-4 text-right">
+<button class="text-slate-500 hover:text-primary-container transition-colors">
+<span class="material-symbols-outlined text-lg">edit</span>
+</button>
+</td>
+</tr>
+<!-- User Row 4 -->
+<tr class="hover:bg-surface-container-highest/30 transition-colors group bg-surface-container-highest/10">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-surface-container-lowest border border-outline-variant/20 flex-shrink-0">
+<img class="w-full h-full object-cover rounded-full" data-alt="professional portrait of an executive woman in a dark high-tech environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEBRNHB5o0hG-LLli_XuAxNR4zwuK12OKjA83NO53mDO7pvSUW7h_CJZW72vPSVNtI6hzHB78hnohDviBCUcg2VNhjcJAPAD3xb0FZXXRyn4P8qk6gvNGAMtSJ50z5c4a_C9pQfOIxgGyhxZUEuZAjsOELgBQLoq7YZI2aLM_FmpusTRXBiIQSHTHS-0c2j1hitFRdsskz-foWLVm6ER1qCWN1VdnAuIfh_hfuctJctIkZy92zaiUh7BHPJHAUXAUDMYyQp4G8ua3D"/>
+</div>
+<div>
+<p class="text-sm font-semibold text-on-surface">Sarah Jenkins</p>
+<p class="text-xs text-slate-500">s.jenkins@horasis.io</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-1 bg-primary/10 text-primary-container text-[10px] font-bold rounded uppercase tracking-wider border border-primary/20">Network Engineer</span>
+</td>
+<td class="px-6 py-4 text-xs text-slate-400 font-medium">Global (CTG)</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-1.5 h-1.5 rounded-full bg-secondary glow-success"></div>
+<span class="text-xs text-secondary font-medium">Active</span>
+</div>
+</td>
+<td class="px-6 py-4 text-xs text-slate-500">Now</td>
+<td class="px-6 py-4 text-right">
+<button class="text-[#00E5FF] transition-colors">
+<span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">edit</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="px-6 py-4 bg-surface-container-high/30 flex justify-between items-center">
+<p class="text-xs text-slate-500">Showing <span class="text-on-surface font-bold">1-10</span> of <span class="text-on-surface font-bold">438</span> members</p>
+<div class="flex gap-2">
+<button class="p-1.5 text-slate-500 hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center text-xs font-bold bg-primary-container text-on-primary-container rounded">1</button>
+<button class="w-8 h-8 flex items-center justify-center text-xs font-bold text-slate-400 hover:bg-surface-container-highest rounded">2</button>
+<button class="w-8 h-8 flex items-center justify-center text-xs font-bold text-slate-400 hover:bg-surface-container-highest rounded">3</button>
+<button class="p-1.5 text-slate-500 hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Async Activity / Metrics Bento items -->
+<div class="col-span-12 md:col-span-4 bg-surface-container-low p-6 rounded-xl border border-outline-variant/10">
+<h3 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4">Auth Activity</h3>
+<div class="space-y-4">
+<div class="flex items-center gap-3">
+<div class="w-1 h-10 bg-secondary rounded-full"></div>
+<div>
+<p class="text-xs font-bold text-on-surface">Successful Logins</p>
+<p class="text-2xl font-display font-bold text-secondary">2,104 <span class="text-[10px] text-slate-500 font-normal">Last 24h</span></p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-1 h-10 bg-on-tertiary-container rounded-full"></div>
+<div>
+<p class="text-xs font-bold text-on-surface">Failed Attempts</p>
+<p class="text-2xl font-display font-bold text-on-tertiary-container">14 <span class="text-[10px] text-slate-500 font-normal">Last 24h</span></p>
+</div>
+</div>
+</div>
+</div>
+<div class="col-span-12 md:col-span-8 bg-surface-container-low p-6 rounded-xl border border-outline-variant/10">
+<div class="flex justify-between items-center mb-6">
+<h3 class="text-xs font-bold text-slate-500 uppercase tracking-widest">Active Sessions by Tenant</h3>
+<span class="material-symbols-outlined text-slate-500 text-sm">open_in_new</span>
+</div>
+<div class="flex items-end gap-2 h-24">
+<div class="flex-1 bg-primary-container/20 hover:bg-primary-container/40 transition-colors relative group h-[80%] rounded-t-sm">
+<div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 hidden group-hover:block text-[8px] font-bold bg-surface-container px-1 rounded">42</div>
+</div>
+<div class="flex-1 bg-primary-container/20 hover:bg-primary-container/40 transition-colors relative group h-[40%] rounded-t-sm"></div>
+<div class="flex-1 bg-primary-container/20 hover:bg-primary-container/40 transition-colors relative group h-[65%] rounded-t-sm"></div>
+<div class="flex-1 bg-primary-container/20 hover:bg-primary-container/40 transition-colors relative group h-[95%] rounded-t-sm"></div>
+<div class="flex-1 bg-primary-container/20 hover:bg-primary-container/40 transition-colors relative group h-[20%] rounded-t-sm"></div>
+<div class="flex-1 bg-primary-container/20 hover:bg-primary-container/40 transition-colors relative group h-[55%] rounded-t-sm"></div>
+<div class="flex-1 bg-primary-container/20 hover:bg-primary-container/40 transition-colors relative group h-[70%] rounded-t-sm"></div>
+<div class="flex-1 bg-primary-container/20 hover:bg-primary-container/40 transition-colors relative group h-[30%] rounded-t-sm"></div>
+</div>
+<div class="flex justify-between text-[8px] text-slate-600 uppercase tracking-widest mt-2">
+<span>CTG</span>
+<span>Chanel</span>
+<span>Tencent</span>
+<span>Global</span>
+<span>Internal</span>
+<span>China-N</span>
+<span>China-S</span>
+<span>Dev</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Side Drawer (Edit User) -->
+<div class="fixed right-0 top-0 h-full w-[400px] z-[60] glass-panel shadow-[-10px_0_30px_rgba(0,0,0,0.5)] flex flex-col">
+<div class="p-6 border-b border-outline-variant/10 flex justify-between items-center bg-surface-container-high/40">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-container">person_edit</span>
+<h2 class="text-xl font-display font-bold text-on-surface">Edit Profile</h2>
+</div>
+<button class="p-2 hover:bg-surface-container-highest rounded transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto p-6 space-y-8">
+<div class="flex flex-col items-center gap-4">
+<div class="relative group">
+<img class="w-24 h-24 rounded-full border-2 border-primary-container shadow-[0_0_15px_rgba(0,229,255,0.3)] object-cover" data-alt="professional portrait for user profile editing in a cybernetic dark ui" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7BfFPnHm4RsS4fDT4XSlngC1pdY4cOsZH-jk8L2JHNh4Vl-6SFv3isbf_1D06tb_l2bBcJ50jGHapY18JX3TazNTE4Wm16-KfWWSfCmwVTtPCCyTcTjSJgoG1uGD9kBvxPq4j1ROrkfnFOm1bYsuCgoE_AlCVX6eNh5xwu3D3t78-6daakukNPDcxx6rEh1mDM2Ce_ANuBTIX3gD4WcGtNL-9shhIoudZZ3qGZxUaVrO29IMulvg8aoOiaW-tdYx7AroEo9GhUnY9"/>
+<button class="absolute bottom-0 right-0 bg-primary-container text-on-primary-container p-1.5 rounded-full shadow-lg">
+<span class="material-symbols-outlined text-sm">photo_camera</span>
+</button>
+</div>
+<div class="text-center">
+<h3 class="text-lg font-bold text-on-surface">Sarah Jenkins</h3>
+<p class="text-xs text-slate-500 uppercase tracking-widest font-bold">Network Operations Center</p>
+</div>
+</div>
+<div class="space-y-6">
+<div class="space-y-2">
+<label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">Full Name</label>
+<input class="w-full bg-surface-container-highest border-none rounded-lg text-sm px-4 py-3 text-on-surface focus:ring-1 focus:ring-primary-container/50" type="text" value="Sarah Jenkins"/>
+</div>
+<div class="space-y-2">
+<label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">Email Address</label>
+<input class="w-full bg-surface-container-highest border-none rounded-lg text-sm px-4 py-3 text-on-surface focus:ring-1 focus:ring-primary-container/50" type="email" value="s.jenkins@horasis.io"/>
+</div>
+<div class="space-y-2">
+<label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">Tenant Assignment</label>
+<select class="w-full bg-surface-container-highest border-none rounded-lg text-sm px-4 py-3 text-on-surface focus:ring-1 focus:ring-primary-container/50 appearance-none">
+<option>Global (CTG)</option>
+<option>Chanel China</option>
+<option>Tencent Cloud</option>
+</select>
+</div>
+<div class="space-y-2">
+<label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">Role Selection</label>
+<select class="w-full bg-surface-container-highest border-none rounded-lg text-sm px-4 py-3 text-on-surface focus:ring-1 focus:ring-primary-container/50 appearance-none">
+<option>Super Admin</option>
+<option selected="">Network Engineer</option>
+<option>Viewer</option>
+<option>Financial Admin</option>
+</select>
+</div>
+</div>
+<div class="bg-primary/5 p-4 rounded-lg border border-primary/10">
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-primary-container text-sm">info</span>
+<p class="text-[11px] text-slate-400 leading-relaxed">Changes to role or tenant assignment will trigger a security audit log and require user re-authentication.</p>
+</div>
+</div>
+</div>
+<div class="p-6 border-t border-outline-variant/10 bg-surface-container-high/40 grid grid-cols-2 gap-4">
+<button class="px-4 py-3 rounded-lg border border-outline-variant text-slate-400 font-bold text-xs uppercase tracking-widest hover:bg-surface-container-highest transition-colors active:scale-95">Cancel</button>
+<button class="px-4 py-3 rounded-lg bg-primary-container text-on-primary-container font-bold text-xs uppercase tracking-widest shadow-[0_0_12px_rgba(0,229,255,0.2)] hover:brightness-110 transition-all active:scale-95">Save Changes</button>
+</div>
+</div>
+</body></html>
