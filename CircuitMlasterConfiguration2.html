@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Unified Circuit Master | SENTINEL_INTERFACE</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-container": "#b60000",
+                        "on-secondary": "#003912",
+                        "on-primary-container": "#00626e",
+                        "on-primary-fixed": "#001f24",
+                        "primary-container": "#00e5ff",
+                        "inverse-surface": "#dfe2eb",
+                        "on-secondary-container": "#004d1b",
+                        "surface-variant": "#31353c",
+                        "surface-container-highest": "#31353c",
+                        "on-surface-variant": "#bac9cc",
+                        "inverse-primary": "#006875",
+                        "surface": "#10141a",
+                        "surface-bright": "#353940",
+                        "primary": "#c3f5ff",
+                        "tertiary-fixed": "#ffdad4",
+                        "primary-fixed": "#9cf0ff",
+                        "error": "#ffb4ab",
+                        "outline-variant": "#3b494c",
+                        "on-tertiary-fixed": "#410000",
+                        "on-surface": "#dfe2eb",
+                        "surface-dim": "#10141a",
+                        "tertiary-container": "#ffc2b8",
+                        "on-primary": "#00363d",
+                        "surface-container-lowest": "#0a0e14",
+                        "surface-container-low": "#181c22",
+                        "secondary": "#40e56c",
+                        "on-tertiary-fixed-variant": "#930000",
+                        "on-secondary-fixed-variant": "#00531e",
+                        "on-primary-fixed-variant": "#004f58",
+                        "surface-container": "#1c2026",
+                        "on-background": "#dfe2eb",
+                        "error-container": "#93000a",
+                        "inverse-on-surface": "#2d3137",
+                        "on-tertiary": "#690000",
+                        "surface-container-high": "#262a31",
+                        "tertiary": "#ffe8e4",
+                        "outline": "#849396",
+                        "on-secondary-fixed": "#002108",
+                        "on-error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#ffb4a8",
+                        "secondary-fixed-dim": "#3ce36a",
+                        "surface-tint": "#00daf3",
+                        "primary-fixed-dim": "#00daf3",
+                        "secondary-fixed": "#69ff87",
+                        "background": "#10141a",
+                        "on-error": "#690005",
+                        "secondary-container": "#02c953"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "display": ["Space Grotesk"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .breathing-success {
+            box-shadow: 0 0 8px 2px rgba(64, 229, 108, 0.4);
+            animation: pulse-green 2s infinite;
+        }
+        .breathing-alert {
+            box-shadow: 0 0 8px 2px rgba(255, 194, 184, 0.4);
+            animation: pulse-yellow 2s infinite;
+        }
+        .breathing-critical {
+            box-shadow: 0 0 8px 2px rgba(182, 0, 0, 0.4);
+            animation: pulse-red 2s infinite;
+        }
+        @keyframes pulse-green { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        @keyframes pulse-yellow { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        @keyframes pulse-red { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        
+        ::-webkit-scrollbar { width: 4px; height: 4px; }
+        ::-webkit-scrollbar-track { background: #10141a; }
+        ::-webkit-scrollbar-thumb { background: #31353c; border-radius: 2px; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center w-full px-6 h-16 sticky top-0 z-50 backdrop-blur-md bg-[#10141a] dark:bg-[#10141a] border-b border-cyan-500/10 shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold tracking-widest text-cyan-400 drop-shadow-[0_0_8px_rgba(0,229,255,0.4)] font-['Space_Grotesk'] uppercase">SENTINEL_INTERFACE</span>
+<!-- Omni-Search Bar -->
+<div class="relative group min-w-[400px]">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-sm">search</span>
+<input class="w-full bg-surface-container-highest border-none rounded-lg pl-10 pr-4 py-2 text-xs font-['Inter'] tracking-wider focus:ring-1 focus:ring-primary/40 placeholder:text-outline/50 transition-all" placeholder="SEARCH BY PHONE, IP, OR CIRCUIT ID..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-400 hover:bg-cyan-400/5 hover:text-cyan-300 transition-colors duration-200 rounded">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-slate-400 hover:bg-cyan-400/5 hover:text-cyan-300 transition-colors duration-200 rounded">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-surface-container-high border border-outline-variant flex items-center justify-center overflow-hidden">
+<span class="material-symbols-outlined text-outline">account_circle</span>
+</div>
+</div>
+</header>
+<div class="flex">
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-full flex flex-col pt-16 bg-[#181c22] dark:bg-[#181c22] h-screen w-64 border-r border-cyan-500/10 z-40">
+<div class="p-6">
+<h2 class="text-cyan-400 font-black font-['Inter'] text-[0.6875rem] font-medium tracking-[0.05em] uppercase">OPERATOR_CORE</h2>
+<p class="text-[0.6rem] text-outline font-mono">V-2.4.0-STABLE</p>
+</div>
+<div class="flex flex-col gap-1 mt-4">
+<a class="flex items-center gap-3 text-slate-500 px-4 py-3 hover:bg-[#31353c] hover:text-cyan-200 transition-all ease-in-out duration-300" href="#">
+<span class="material-symbols-outlined text-sm">dashboard</span>
+<span class="font-['Inter'] text-[0.6875rem] font-medium tracking-[0.05em] uppercase">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 bg-cyan-400/10 text-cyan-400 px-4 py-3 border-r-2 border-cyan-400 shadow-[inset_-10px_0_15px_-10px_rgba(0,229,255,0.3)] transition-all ease-in-out duration-300" href="#">
+<span class="material-symbols-outlined text-sm">lan</span>
+<span class="font-['Inter'] text-[0.6875rem] font-medium tracking-[0.05em] uppercase">Asset Management</span>
+</a>
+<a class="flex items-center gap-3 text-slate-500 px-4 py-3 hover:bg-[#31353c] hover:text-cyan-200 transition-all ease-in-out duration-300" href="#">
+<span class="material-symbols-outlined text-sm">settings</span>
+<span class="font-['Inter'] text-[0.6875rem] font-medium tracking-[0.05em] uppercase">Settings</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="ml-64 flex-1 min-h-screen bg-surface p-8 overflow-x-hidden">
+<div class="flex justify-between items-end mb-8">
+<div>
+<h1 class="text-3xl font-display font-bold text-on-surface tracking-tighter uppercase">Unified Circuit Master</h1>
+<p class="text-outline font-mono text-xs tracking-widest mt-1">REAL-TIME NETWORK TOPOLOGY ENGINE</p>
+</div>
+<div class="flex gap-4">
+<button class="px-4 py-2 bg-surface-container-highest text-on-surface text-xs font-bold rounded flex items-center gap-2 hover:bg-surface-bright transition-colors">
+<span class="material-symbols-outlined text-sm">filter_alt</span> FILTER
+                    </button>
+<button class="px-4 py-2 bg-primary-container text-on-primary-container text-xs font-bold rounded flex items-center gap-2 shadow-[0_0_15px_rgba(0,229,255,0.2)]">
+<span class="material-symbols-outlined text-sm">add</span> PROVISION CIRCUIT
+                    </button>
+</div>
+</div>
+<!-- Master Grid Container -->
+<div class="bg-surface-container-low rounded-lg overflow-hidden border-none relative group">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container border-b border-outline-variant/10">
+<th class="px-6 py-4 text-[0.6875rem] font-bold text-outline uppercase tracking-widest font-display">Status</th>
+<th class="px-6 py-4 text-[0.6875rem] font-bold text-outline uppercase tracking-widest font-display">Circuit Identity</th>
+<th class="px-6 py-4 text-[0.6875rem] font-bold text-outline uppercase tracking-widest font-display">Topology</th>
+<th class="px-6 py-4 text-[0.6875rem] font-bold text-outline uppercase tracking-widest font-display">Network</th>
+<th class="px-6 py-4 text-[0.6875rem] font-bold text-outline uppercase tracking-widest font-display text-right">Bandwidth</th>
+<th class="px-6 py-4 text-[0.6875rem] font-bold text-outline uppercase tracking-widest font-display text-center">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/5">
+<!-- Row 1: Selected State -->
+<tr class="bg-primary/5 border-l-2 border-primary-container transition-all hover:bg-primary/10 group/row cursor-pointer">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="h-2 w-2 rounded-full bg-secondary breathing-success"></div>
+<span class="text-[0.6875rem] font-bold font-mono text-secondary">ONLINE</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-sm font-bold font-display text-primary tracking-tight">Shanghai-HQ-Link</span>
+<span class="text-[0.6rem] font-mono text-outline">CTG-DIA-SH-001</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline text-lg">location_on</span>
+<span class="text-xs font-medium">Plaza 66 Shanghai</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="text-xs font-mono text-on-surface-variant bg-surface-container-highest px-2 py-1 rounded">202.96.10.1/29</span>
+</td>
+<td class="px-6 py-5 text-right">
+<span class="text-sm font-bold font-mono">1000 <span class="text-[0.6rem] text-outline">Mbps</span></span>
+</td>
+<td class="px-6 py-5 text-center">
+<button class="text-[0.6rem] font-black uppercase tracking-widest px-3 py-1.5 border border-primary/20 rounded text-primary hover:bg-primary/10 transition-colors">View Details</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="transition-all hover:bg-surface-container-highest group/row cursor-pointer">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="h-2 w-2 rounded-full bg-tertiary-container breathing-alert"></div>
+<span class="text-[0.6875rem] font-bold font-mono text-tertiary-container">ALERT</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-sm font-bold font-display text-on-surface tracking-tight">Beijing-DC-Interconnect</span>
+<span class="text-[0.6rem] font-mono text-outline">MPLS-BJ-IX-442</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline text-lg">location_on</span>
+<span class="text-xs font-medium">China Resources Bldg</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="text-xs font-mono text-on-surface-variant bg-surface-container-highest px-2 py-1 rounded">114.242.8.64/29</span>
+</td>
+<td class="px-6 py-5 text-right">
+<span class="text-sm font-bold font-mono">5000 <span class="text-[0.6rem] text-outline">Mbps</span></span>
+</td>
+<td class="px-6 py-5 text-center">
+<button class="text-[0.6rem] font-black uppercase tracking-widest px-3 py-1.5 border border-outline/20 rounded text-outline hover:text-primary hover:border-primary/40 transition-colors">View Details</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="transition-all hover:bg-surface-container-highest group/row cursor-pointer">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="h-2 w-2 rounded-full bg-on-tertiary-container breathing-critical"></div>
+<span class="text-[0.6875rem] font-bold font-mono text-on-tertiary-container">OFFLINE</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-sm font-bold font-display text-on-surface tracking-tight">HK-Transit-Node-1</span>
+<span class="text-[0.6rem] font-mono text-outline">IX-HKG-09-A</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline text-lg">location_on</span>
+<span class="text-xs font-medium">Equinix HK2</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="text-xs font-mono text-on-surface-variant bg-surface-container-highest px-2 py-1 rounded">45.120.4.128/29</span>
+</td>
+<td class="px-6 py-5 text-right">
+<span class="text-sm font-bold font-mono">10000 <span class="text-[0.6rem] text-outline">Mbps</span></span>
+</td>
+<td class="px-6 py-5 text-center">
+<button class="text-[0.6rem] font-black uppercase tracking-widest px-3 py-1.5 border border-outline/20 rounded text-outline hover:text-primary hover:border-primary/40 transition-colors">View Details</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Bottom Pagination/Status info -->
+<div class="p-4 bg-surface-container border-t border-outline-variant/10 flex justify-between items-center">
+<div class="flex items-center gap-4">
+<span class="text-[0.6rem] font-mono text-outline uppercase tracking-tighter">Total Nodes: 1,244</span>
+<span class="text-[0.6rem] font-mono text-secondary uppercase tracking-tighter">Active: 1,202</span>
+<span class="text-[0.6rem] font-mono text-on-tertiary-container uppercase tracking-tighter">Critical: 4</span>
+</div>
+<div class="flex gap-2">
+<button class="h-8 w-8 flex items-center justify-center rounded bg-surface-container-highest text-outline hover:text-on-surface"><span class="material-symbols-outlined text-sm">chevron_left</span></button>
+<button class="h-8 w-8 flex items-center justify-center rounded bg-primary-container text-on-primary-container text-xs font-bold">1</button>
+<button class="h-8 w-8 flex items-center justify-center rounded bg-surface-container-highest text-outline hover:text-on-surface text-xs font-bold">2</button>
+<button class="h-8 w-8 flex items-center justify-center rounded bg-surface-container-highest text-outline hover:text-on-surface"><span class="material-symbols-outlined text-sm">chevron_right</span></button>
+</div>
+</div>
+</div>
+</main>
+<!-- Unified Drawer (Slide-out panel) -->
+<aside class="fixed right-0 top-0 h-full w-[400px] bg-surface-container-low border-l border-cyan-500/10 z-50 shadow-[-20px_0_40px_rgba(0,0,0,0.6)] flex flex-col pt-16 transform transition-transform duration-300">
+<!-- Header -->
+<div class="p-6 border-b border-outline-variant/10 flex justify-between items-start">
+<div>
+<h3 class="text-xs font-mono text-primary uppercase tracking-[0.2em]">Circuit Detail</h3>
+<h2 class="text-2xl font-display font-bold text-on-surface tracking-tight mt-1">Shanghai-HQ-Link</h2>
+<p class="text-[0.65rem] font-mono text-outline mt-1">ID: CTG-DIA-SH-001</p>
+</div>
+<button class="p-2 text-outline hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto p-6 space-y-8">
+<!-- Top: Sparkline Chart -->
+<section>
+<div class="flex justify-between items-end mb-4">
+<span class="text-[0.6rem] font-black uppercase tracking-widest text-outline">Real-time Throughput</span>
+<span class="text-xl font-mono font-bold text-secondary">842.4 <span class="text-[0.6rem] opacity-50 uppercase">Mbps</span></span>
+</div>
+<div class="h-24 w-full bg-surface-container-lowest rounded-lg p-2 relative overflow-hidden group">
+<!-- Simulated Sparkline via SVG -->
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 100 40">
+<defs>
+<lineargradient id="chartGradient" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#40e56c" stop-opacity="0.3"></stop>
+<stop offset="100%" stop-color="#40e56c" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<path d="M0,35 Q10,10 20,25 T40,15 T60,30 T80,10 T100,20 L100,40 L0,40 Z" fill="url(#chartGradient)"></path>
+<path d="M0,35 Q10,10 20,25 T40,15 T60,30 T80,10 T100,20" fill="none" stroke="#40e56c" stroke-width="1.5"></path>
+</svg>
+<div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+</div>
+</section>
+<!-- Middle: Site Contact Card -->
+<section class="space-y-4">
+<span class="text-[0.6rem] font-black uppercase tracking-widest text-outline">Site Information</span>
+<div class="bg-surface-container rounded-lg overflow-hidden border border-outline-variant/10">
+<div class="h-32 w-full bg-surface-container-highest relative">
+<img class="w-full h-full object-cover opacity-60" data-alt="Dark stylized satellite map of Shanghai city grid with neon blue location pins and data overlays" data-location="Shanghai" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_l-MP3CzmGFLkL0pgsFQNcLLo8mxyQlMRhfBrAY3TcfRNa3Bk-Rb262lpzw9uzKzZtiTW-fTLRm4JWsEEiz9uNE0ighDiUEOAh_hVA7aCSlwq6pYD3QDt6XWpRE7K_Qt7TpMEMduVKJUj1R8kngmZos79vSf225xDdm1XzyVYmt-a3q9L6Xw02KqQzQ3OzVZWA0VkUJPQ-YMsLVq5n7zz9CFz94BBzU1SRvuJmypNB6kbob8kzn682O8md_IbjbAhNCh5o4LJ1MFX"/>
+<div class="absolute bottom-3 left-3 bg-surface-container-lowest/80 backdrop-blur-md px-3 py-1 rounded-sm border border-primary/20">
+<span class="text-[0.6rem] font-mono text-primary font-bold">31.2297° N, 121.4534° E</span>
+</div>
+</div>
+<div class="p-4 space-y-3">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-lg">domain</span>
+<div>
+<p class="text-xs font-bold text-on-surface">Plaza 66 Shanghai</p>
+<p class="text-[0.65rem] text-outline leading-relaxed">No. 1266 Nanjing West Road, Jing'an District, Shanghai, PRC</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-lg">call</span>
+<p class="text-xs font-mono font-bold">+86 (21) 6288 3333</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Bottom: IP Allocation Grid -->
+<section class="space-y-4">
+<div class="flex justify-between items-center">
+<span class="text-[0.6rem] font-black uppercase tracking-widest text-outline">IP Allocation (/29 Subnet)</span>
+<span class="text-[0.6rem] font-mono text-on-surface-variant">202.96.10.1 - 202.96.10.8</span>
+</div>
+<div class="grid grid-cols-4 gap-2">
+<!-- Used IP -->
+<div class="aspect-square bg-primary/20 border border-primary/40 rounded flex flex-col items-center justify-center gap-1 group/ip cursor-help">
+<span class="text-[0.6rem] font-mono text-primary font-black">.1</span>
+<div class="h-1 w-1 rounded-full bg-secondary shadow-[0_0_4px_#40e56c]"></div>
+</div>
+<!-- Used IP -->
+<div class="aspect-square bg-primary/20 border border-primary/40 rounded flex flex-col items-center justify-center gap-1">
+<span class="text-[0.6rem] font-mono text-primary font-black">.2</span>
+<div class="h-1 w-1 rounded-full bg-secondary shadow-[0_0_4px_#40e56c]"></div>
+</div>
+<!-- Used IP -->
+<div class="aspect-square bg-primary/20 border border-primary/40 rounded flex flex-col items-center justify-center gap-1">
+<span class="text-[0.6rem] font-mono text-primary font-black">.3</span>
+<div class="h-1 w-1 rounded-full bg-secondary shadow-[0_0_4px_#40e56c]"></div>
+</div>
+<!-- Used IP -->
+<div class="aspect-square bg-primary/20 border border-primary/40 rounded flex flex-col items-center justify-center gap-1">
+<span class="text-[0.6rem] font-mono text-primary font-black">.4</span>
+<div class="h-1 w-1 rounded-full bg-secondary shadow-[0_0_4px_#40e56c]"></div>
+</div>
+<!-- Available IP -->
+<div class="aspect-square bg-surface-container-highest border border-outline-variant/30 rounded flex flex-col items-center justify-center gap-1 opacity-40">
+<span class="text-[0.6rem] font-mono text-outline font-black">.5</span>
+<div class="h-1 w-1 rounded-full bg-outline"></div>
+</div>
+<!-- Available IP -->
+<div class="aspect-square bg-surface-container-highest border border-outline-variant/30 rounded flex flex-col items-center justify-center gap-1 opacity-40">
+<span class="text-[0.6rem] font-mono text-outline font-black">.6</span>
+<div class="h-1 w-1 rounded-full bg-outline"></div>
+</div>
+<!-- Reserved/Gateway -->
+<div class="aspect-square bg-surface-container-lowest border border-on-tertiary-container/30 rounded flex flex-col items-center justify-center gap-1">
+<span class="text-[0.6rem] font-mono text-on-tertiary-container font-black">.7</span>
+<span class="text-[0.4rem] font-black text-on-tertiary-container uppercase">GW</span>
+</div>
+<!-- Reserved/Broadcast -->
+<div class="aspect-square bg-surface-container-lowest border border-outline/30 rounded flex flex-col items-center justify-center gap-1">
+<span class="text-[0.6rem] font-mono text-outline font-black">.8</span>
+<span class="text-[0.4rem] font-black text-outline uppercase">BR</span>
+</div>
+</div>
+</section>
+</div>
+<!-- Footer Action -->
+<div class="p-6 bg-surface-container-lowest border-t border-outline-variant/10">
+<button class="w-full py-3 bg-primary-container text-on-primary-container text-xs font-black uppercase tracking-widest rounded shadow-[0_0_20px_rgba(0,229,255,0.3)] hover:brightness-110 transition-all">
+                    Initiate Node Diagnostics
+                </button>
+</div>
+</aside>
+</div>
+<!-- Floating Action Button Context -->
+<div class="fixed bottom-8 right-[432px] z-30">
+<button class="h-14 w-14 rounded-full bg-surface-tint text-on-primary flex items-center justify-center shadow-[0_0_30px_rgba(0,218,243,0.4)] transition-transform active:scale-95 duration-100">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">terminal</span>
+</button>
+</div>
+</body></html>
