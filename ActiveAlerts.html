@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SENTINEL_NOC | Telemetry Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bright": "#353940",
+                        "on-tertiary-fixed": "#410000",
+                        "secondary-fixed-dim": "#3ce36a",
+                        "on-error": "#690005",
+                        "secondary": "#40e56c",
+                        "surface-variant": "#31353c",
+                        "surface-dim": "#10141a",
+                        "error-container": "#93000a",
+                        "surface-container": "#1c2026",
+                        "primary-container": "#00e5ff",
+                        "background": "#10141a",
+                        "inverse-surface": "#dfe2eb",
+                        "inverse-on-surface": "#2d3137",
+                        "on-tertiary-container": "#b60000",
+                        "tertiary-fixed-dim": "#ffb4a8",
+                        "on-primary": "#00363d",
+                        "on-secondary-fixed": "#002108",
+                        "on-primary-fixed": "#001f24",
+                        "on-secondary-fixed-variant": "#00531e",
+                        "outline": "#849396",
+                        "on-primary-container": "#00626e",
+                        "surface-container-high": "#262a31",
+                        "surface-container-low": "#181c22",
+                        "surface-container-lowest": "#0a0e14",
+                        "error": "#ffb4ab",
+                        "on-secondary-container": "#004d1b",
+                        "secondary-container": "#02c953",
+                        "on-surface": "#dfe2eb",
+                        "surface-container-highest": "#31353c",
+                        "on-primary-fixed-variant": "#004f58",
+                        "on-error-container": "#ffdad6",
+                        "secondary-fixed": "#69ff87",
+                        "primary-fixed": "#9cf0ff",
+                        "on-secondary": "#003912",
+                        "tertiary": "#ffe8e4",
+                        "on-tertiary-fixed-variant": "#930000",
+                        "inverse-primary": "#006875",
+                        "tertiary-fixed": "#ffdad4",
+                        "primary-fixed-dim": "#00daf3",
+                        "primary": "#c3f5ff",
+                        "outline-variant": "#3b494c",
+                        "on-surface-variant": "#bac9cc",
+                        "on-background": "#dfe2eb",
+                        "tertiary-container": "#ffc2b8",
+                        "surface": "#10141a",
+                        "on-tertiary": "#690000",
+                        "surface-tint": "#00daf3"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "display": ["Space Grotesk"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #10141a; color: #dfe2eb; }
+        .font-headline { font-family: 'Space Grotesk', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .chart-glow { filter: drop-shadow(0 0 4px rgba(0, 229, 255, 0.4)); }
+        .glass-panel { background: rgba(49, 53, 60, 0.6); backdrop-filter: blur(12px); }
+        .critical-pulse { animation: pulse-red 2s infinite; }
+        @keyframes pulse-red {
+            0% { box-shadow: 0 0 0 0 rgba(182, 0, 0, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(182, 0, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(182, 0, 0, 0); }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#10141a]/80 backdrop-blur-xl flex items-center justify-between px-6 h-16 w-full shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold tracking-widest text-[#00E5FF] drop-shadow-[0_0_8px_rgba(0,229,255,0.4)] font-['Space_Grotesk']">SENTINEL_NOC</span>
+<div class="hidden md:flex gap-6 items-center">
+<button class="text-slate-400 font-['Space_Grotesk'] tracking-tight text-sm hover:bg-[#31353c] px-3 py-1 transition-all">OVERVIEW</button>
+<button class="text-[#00E5FF] border-b-2 border-[#00E5FF] font-['Space_Grotesk'] tracking-tight text-sm px-3 py-1">TELEMETRY</button>
+<button class="text-slate-400 font-['Space_Grotesk'] tracking-tight text-sm hover:bg-[#31353c] px-3 py-1 transition-all">SYSTEM_LOGS</button>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative">
+<span class="material-symbols-outlined text-slate-400 cursor-pointer p-2 hover:bg-[#31353c] rounded">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-on-tertiary-container rounded-full"></span>
+</div>
+<span class="material-symbols-outlined text-slate-400 cursor-pointer p-2 hover:bg-[#31353c] rounded" data-icon="fullscreen">fullscreen</span>
+<span class="material-symbols-outlined text-slate-400 cursor-pointer p-2 hover:bg-[#31353c] rounded" data-icon="sync">sync</span>
+<span class="material-symbols-outlined text-slate-400 cursor-pointer p-2 hover:bg-[#31353c] rounded" data-icon="settings">settings</span>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full w-64 z-[60] bg-[#10141a] flex flex-col h-full border-r border-[#31353c]/20 shadow-[4px_0_24px_rgba(0,0,0,0.8)]">
+<div class="p-6 pt-20">
+<div class="flex items-center gap-3 mb-8">
+<div class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center border border-[#00E5FF]/20">
+<span class="material-symbols-outlined text-[#00E5FF]" style="font-variation-settings: 'FILL' 1;">deployed_code</span>
+</div>
+<div>
+<div class="text-[#00E5FF] font-black text-sm tracking-widest font-headline">SENTINEL_CORE</div>
+<div class="text-slate-500 text-[10px] uppercase font-label">Node: Alpha-7</div>
+</div>
+</div>
+<nav class="space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-[#1c2026] hover:text-[#00E5FF] transition-all duration-300 font-['Inter'] font-medium uppercase tracking-widest text-[11px]" href="#">
+<span class="material-symbols-outlined text-lg">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-[#1c2026] hover:text-[#00E5FF] transition-all duration-300 font-['Inter'] font-medium uppercase tracking-widest text-[11px]" href="#">
+<span class="material-symbols-outlined text-lg">hub</span>
+<span>Topology</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-[#1c2026] text-[#00E5FF] border-r-4 border-[#00E5FF] shadow-[inset_-10px_0_15px_rgba(0,229,255,0.05)] font-['Inter'] font-medium uppercase tracking-widest text-[11px]" href="#">
+<span class="material-symbols-outlined text-lg">query_stats</span>
+<span>Telemetry</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-[#1c2026] hover:text-[#00E5FF] transition-all duration-300 font-['Inter'] font-medium uppercase tracking-widest text-[11px]" href="#">
+<span class="material-symbols-outlined text-lg">terminal</span>
+<span>Logs</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-[#1c2026] hover:text-[#00E5FF] transition-all duration-300 font-['Inter'] font-medium uppercase tracking-widest text-[11px]" href="#">
+<span class="material-symbols-outlined text-lg">shield</span>
+<span>Security</span>
+</a>
+</nav>
+</div>
+<div class="mt-auto p-6 space-y-4">
+<button class="w-full py-3 bg-surface-container-highest border border-[#00E5FF]/30 text-[#00E5FF] text-[10px] font-bold tracking-widest rounded hover:bg-[#00E5FF] hover:text-on-primary-container transition-all active:scale-95">
+                DEPLOY UPDATE
+            </button>
+<div class="space-y-1">
+<a class="flex items-center gap-3 px-4 py-2 text-slate-500 hover:text-slate-200 text-[10px] uppercase font-label" href="#">
+<span class="material-symbols-outlined text-sm">help</span>
+<span>Support</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-slate-500 hover:text-slate-200 text-[10px] uppercase font-label" href="#">
+<span class="material-symbols-outlined text-sm">description</span>
+<span>Documentation</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="pl-64 pt-16 min-h-screen flex flex-col">
+<!-- Filters Bar -->
+<section class="h-14 px-8 border-b border-outline-variant/10 flex items-center justify-between bg-surface-container-low">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2">
+<span class="text-[10px] font-bold text-on-surface-variant tracking-widest uppercase">Time Range:</span>
+<div class="flex bg-surface-container rounded p-0.5">
+<button class="px-3 py-1 text-[10px] font-bold bg-surface-container-highest text-primary-container rounded">DAY</button>
+<button class="px-3 py-1 text-[10px] font-bold text-on-surface-variant hover:text-on-surface">MONTH</button>
+<button class="px-3 py-1 text-[10px] font-bold text-on-surface-variant hover:text-on-surface">YEAR</button>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-[10px] font-bold text-on-surface-variant tracking-widest uppercase">Refresh Rate:</span>
+<select class="bg-surface-container text-on-surface text-[10px] border-none rounded py-1 pl-2 pr-8 focus:ring-1 focus:ring-primary-container">
+<option>5s</option>
+<option selected="">10s</option>
+<option>30s</option>
+<option>1m</option>
+</select>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex items-center gap-2 text-[10px] font-bold text-primary-container hover:bg-primary-container/10 px-3 py-1.5 rounded transition-all">
+<span class="material-symbols-outlined text-sm">fullscreen</span>
+                    FULLSCREEN VIEW
+                </button>
+<div class="h-4 w-[1px] bg-outline-variant/20"></div>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary shadow-[0_0_8px_2px_rgba(64,229,108,0.4)]"></span>
+<span class="text-[10px] font-mono text-secondary">LIVE FEED ACTIVE</span>
+</div>
+</div>
+</section>
+<!-- Data Canvas -->
+<div class="flex-1 flex overflow-hidden">
+<!-- Charts Grid -->
+<div class="flex-1 p-6 grid grid-cols-2 grid-rows-2 gap-6 overflow-y-auto">
+<!-- Chart 1: Latency -->
+<div class="bg-surface-container rounded-lg p-6 flex flex-col relative overflow-hidden group">
+<div class="flex items-center justify-between mb-4">
+<div class="flex flex-col">
+<span class="text-[10px] font-bold text-on-surface-variant tracking-widest uppercase">Real-time Latency</span>
+<h3 class="text-xl font-headline font-bold text-on-surface">24.8<span class="text-primary-container ml-1 font-normal text-sm">ms</span></h3>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant/30 group-hover:text-primary-container transition-colors">show_chart</span>
+</div>
+<div class="flex-1 flex items-end gap-1 min-h-[160px]">
+<!-- Latency Visualization (Mock) -->
+<div class="w-full h-full flex items-end justify-between relative pt-8">
+<div class="absolute top-1/3 w-full border-t border-on-tertiary-container/30 border-dashed z-0 flex items-center">
+<span class="bg-surface-container px-2 text-[8px] font-mono text-on-tertiary-container uppercase tracking-widest">Threshold: 100ms</span>
+</div>
+<svg class="w-full h-full overflow-visible" viewbox="0 0 400 120">
+<path class="chart-glow" d="M0,100 L20,95 L40,98 L60,85 L80,90 L100,75 L120,40 L140,45 L160,88 L180,92 L200,95 L220,80 L240,85 L260,35 L280,30 L300,85 L320,90 L340,95 L360,92 L380,94 L400,96" fill="none" stroke="#00daf3" stroke-width="2"></path>
+<circle class="critical-pulse" cx="280" cy="30" fill="#ffb4ab" r="3"></circle>
+</svg>
+</div>
+</div>
+</div>
+<!-- Chart 2: Total Bandwidth -->
+<div class="bg-surface-container rounded-lg p-6 flex flex-col relative overflow-hidden group">
+<div class="flex items-center justify-between mb-4">
+<div class="flex flex-col">
+<span class="text-[10px] font-bold text-on-surface-variant tracking-widest uppercase">Aggregated Bandwidth</span>
+<h3 class="text-xl font-headline font-bold text-on-surface">842.1<span class="text-primary-container ml-1 font-normal text-sm">Mbps</span></h3>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant/30 group-hover:text-primary-container transition-colors">area_chart</span>
+</div>
+<div class="flex-1 flex items-end gap-1 min-h-[160px]">
+<svg class="w-full h-full overflow-visible" viewbox="0 0 400 120">
+<defs>
+<lineargradient id="areaGrad" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#00daf3" stop-opacity="0.2"></stop>
+<stop offset="100%" stop-color="#00daf3" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<path d="M0,120 L0,90 L40,80 L80,100 L120,70 L160,60 L200,85 L240,75 L280,50 L320,55 L360,40 L400,30 L400,120 Z" fill="url(#areaGrad)"></path>
+<path d="M0,90 L40,80 L80,100 L120,70 L160,60 L200,85 L240,75 L280,50 L320,55 L360,40 L400,30" fill="none" stroke="#00daf3" stroke-width="1.5"></path>
+</svg>
+</div>
+</div>
+<!-- Chart 3: Throughput (In/Out) -->
+<div class="bg-surface-container rounded-lg p-6 flex flex-col relative overflow-hidden group">
+<div class="flex items-center justify-between mb-4">
+<div class="flex flex-col">
+<span class="text-[10px] font-bold text-on-surface-variant tracking-widest uppercase">Inbound vs Outbound</span>
+<div class="flex gap-4 items-center">
+<span class="text-sm font-mono text-secondary">IN: 412.0</span>
+<span class="text-sm font-mono text-primary-container">OUT: 430.1</span>
+</div>
+</div>
+<div class="flex gap-2">
+<div class="flex items-center gap-1">
+<div class="w-2 h-0.5 bg-secondary"></div>
+<span class="text-[8px] font-mono text-on-surface-variant uppercase">RX</span>
+</div>
+<div class="flex items-center gap-1">
+<div class="w-2 h-0.5 bg-primary-container"></div>
+<span class="text-[8px] font-mono text-on-surface-variant uppercase">TX</span>
+</div>
+</div>
+</div>
+<div class="flex-1 flex items-end gap-1 min-h-[160px]">
+<svg class="w-full h-full overflow-visible" viewbox="0 0 400 120">
+<!-- Outbound (Cyan) -->
+<path d="M0,80 L50,75 L100,85 L150,60 L200,65 L250,40 L300,50 L350,30 L400,35" fill="none" stroke="#00daf3" stroke-width="1.5"></path>
+<!-- Inbound (Green) -->
+<path d="M0,100 L50,90 L100,95 L150,80 L200,85 L250,70 L300,75 L350,60 L400,65" fill="none" stroke="#40e56c" stroke-dasharray="4,2" stroke-width="1.5"></path>
+</svg>
+</div>
+</div>
+<!-- Chart 4: CRC Errors -->
+<div class="bg-surface-container rounded-lg p-6 flex flex-col relative overflow-hidden group">
+<div class="flex items-center justify-between mb-4">
+<div class="flex flex-col">
+<span class="text-[10px] font-bold text-on-surface-variant tracking-widest uppercase">CRC Error Tracking</span>
+<h3 class="text-xl font-headline font-bold text-on-tertiary-container">2<span class="text-on-surface-variant ml-1 font-normal text-sm">active</span></h3>
+</div>
+<span class="material-symbols-outlined text-on-tertiary-container">warning</span>
+</div>
+<div class="flex-1 flex items-end gap-1 min-h-[160px] pb-2">
+<!-- Bar Chart -->
+<div class="flex items-end justify-between w-full h-full px-2">
+<div class="w-4 bg-surface-container-highest rounded-t-sm h-4"></div>
+<div class="w-4 bg-surface-container-highest rounded-t-sm h-8"></div>
+<div class="w-4 bg-on-tertiary-container rounded-t-sm h-24 shadow-[0_0_12px_rgba(182,0,0,0.4)]"></div>
+<div class="w-4 bg-surface-container-highest rounded-t-sm h-12"></div>
+<div class="w-4 bg-surface-container-highest rounded-t-sm h-2"></div>
+<div class="w-4 bg-surface-container-highest rounded-t-sm h-4"></div>
+<div class="w-4 bg-surface-container-highest rounded-t-sm h-6"></div>
+<div class="w-4 bg-on-tertiary-container rounded-t-sm h-16 shadow-[0_0_12px_rgba(182,0,0,0.4)]"></div>
+<div class="w-4 bg-surface-container-highest rounded-t-sm h-2"></div>
+<div class="w-4 bg-surface-container-highest rounded-t-sm h-3"></div>
+<div class="w-4 bg-surface-container-highest rounded-t-sm h-1"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Active Alert Feed Sidebar -->
+<aside class="w-96 border-l border-outline-variant/10 bg-surface-container-low flex flex-col">
+<div class="p-6 border-b border-outline-variant/10">
+<div class="flex items-center justify-between">
+<h2 class="text-sm font-headline font-bold tracking-widest text-on-surface">ACTIVE_ALERTS</h2>
+<span class="text-[10px] font-mono text-on-surface-variant bg-surface-container px-2 py-1 rounded">12 TOTAL</span>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto p-4 space-y-3">
+<!-- Alert: Critical -->
+<div class="p-4 bg-on-tertiary-container/5 rounded-lg border-l-4 border-on-tertiary-container hover:bg-on-tertiary-container/10 transition-colors">
+<div class="flex justify-between items-start mb-2">
+<span class="text-[10px] font-bold text-on-tertiary-container uppercase tracking-wider">Critical Failure</span>
+<span class="text-[9px] font-mono text-on-surface-variant">09:42:12</span>
+</div>
+<p class="text-[11px] leading-relaxed text-on-surface mb-3">CRC Errors detected on Interface <span class="font-mono text-on-tertiary-container">GigEth0/1/4</span>. Physical link degradation likely.</p>
+<div class="flex gap-2">
+<button class="px-2 py-1 text-[9px] font-bold bg-on-tertiary-container text-white rounded">ACKNOWLEDGE</button>
+<button class="px-2 py-1 text-[9px] font-bold text-on-surface-variant border border-outline-variant/20 rounded">DETAILS</button>
+</div>
+</div>
+<!-- Alert: Warning -->
+<div class="p-4 bg-tertiary-container/5 rounded-lg border-l-4 border-tertiary-container hover:bg-tertiary-container/10 transition-colors">
+<div class="flex justify-between items-start mb-2">
+<span class="text-[10px] font-bold text-tertiary-container uppercase tracking-wider">Threshold Breach</span>
+<span class="text-[9px] font-mono text-on-surface-variant">10:05:44</span>
+</div>
+<p class="text-[11px] leading-relaxed text-on-surface mb-3">Latency spikes exceeded <span class="font-mono text-tertiary-container">100ms</span> on North-Region Backbone cluster.</p>
+<div class="flex gap-2">
+<button class="px-2 py-1 text-[9px] font-bold bg-tertiary-container text-on-tertiary-fixed rounded">ACKNOWLEDGE</button>
+<button class="px-2 py-1 text-[9px] font-bold text-on-surface-variant border border-outline-variant/20 rounded">TRACE</button>
+</div>
+</div>
+<!-- Alert: Info -->
+<div class="p-4 bg-primary-container/5 rounded-lg border-l-4 border-primary-container hover:bg-primary-container/10 transition-colors">
+<div class="flex justify-between items-start mb-2">
+<span class="text-[10px] font-bold text-primary-container uppercase tracking-wider">System Update</span>
+<span class="text-[9px] font-mono text-on-surface-variant">10:12:01</span>
+</div>
+<p class="text-[11px] leading-relaxed text-on-surface">Telemetry Node <span class="font-mono text-primary-container">Delta-1</span> re-synchronized with Sentinel_Core.</p>
+</div>
+<!-- Alert: Success (Resolved) -->
+<div class="p-4 bg-secondary/5 rounded-lg border-l-4 border-secondary hover:bg-secondary/10 transition-colors">
+<div class="flex justify-between items-start mb-2">
+<span class="text-[10px] font-bold text-secondary uppercase tracking-wider">Resolved</span>
+<span class="text-[9px] font-mono text-on-surface-variant">08:55:12</span>
+</div>
+<p class="text-[11px] leading-relaxed text-on-surface">Auto-scaling group <span class="font-mono text-secondary">WebTier-4</span> stabilized at 15 instances.</p>
+</div>
+<!-- Repeated Item for Scrolling -->
+<div class="p-4 bg-tertiary-container/5 rounded-lg border-l-4 border-tertiary-container opacity-60">
+<div class="flex justify-between items-start mb-2">
+<span class="text-[10px] font-bold text-tertiary-container uppercase tracking-wider">Warning</span>
+<span class="text-[9px] font-mono text-on-surface-variant">08:42:00</span>
+</div>
+<p class="text-[11px] leading-relaxed text-on-surface">Fan speed anomaly on PSU-2, Node Gamma-9.</p>
+</div>
+</div>
+<div class="p-4 bg-surface-container-highest border-t border-outline-variant/10">
+<button class="w-full py-2 text-[10px] font-bold tracking-widest text-on-surface-variant hover:text-on-surface transition-colors flex items-center justify-center gap-2">
+                        VIEW_HISTORICAL_ARCHIVE
+                        <span class="material-symbols-outlined text-sm">history</span>
+</button>
+</div>
+</aside>
+</div>
+</main>
+<!-- Floating Action Button - Only for Primary Task -->
+<button class="fixed bottom-8 right-[26rem] w-14 h-14 bg-primary-container text-on-primary-container rounded-full shadow-[0_8px_32px_rgba(0,229,255,0.4)] flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-[70]">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add</span>
+</button>
+</body></html>
